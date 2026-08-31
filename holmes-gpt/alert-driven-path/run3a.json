@@ -1,0 +1,614 @@
+[
+    {
+        "issue": {
+            "id": "ShopPaymentsDown-29a7f80b68d7799f-2026-08-18 07:42:03+00:00",
+            "name": "ShopPaymentsDown",
+            "source_type": "prometheus",
+            "source_instance_id": "http://localhost:9093",
+            "url": "",
+            "raw": {
+                "status": "active",
+                "labels": {
+                    "alertname": "ShopPaymentsDown",
+                    "namespace": "payments",
+                    "service": "payments",
+                    "severity": "critical"
+                },
+                "annotations": {
+                    "summary": "payments service has no available replicas in namespace payments"
+                },
+                "startsAt": "2026-08-18 07:42:03+00:00",
+                "endsAt": "2026-08-18 23:00:00+00:00",
+                "generatorURL": "",
+                "fingerprint": "29a7f80b68d7799f",
+                "unique_id": "ShopPaymentsDown-29a7f80b68d7799f-2026-08-18 07:42:03+00:00",
+                "duration": "15:17:57",
+                "name": "ShopPaymentsDown",
+                "definition": ""
+            },
+            "presentation_status": null,
+            "show_status_in_title": true,
+            "presentation_key_metadata": "*Severity*: critical\n*Start Time*: 2026-08-18 07:42:03 UTC\n*Duration*: 15 hours",
+            "presentation_all_metadata": "*Labels:*\n• *alertname*: ShopPaymentsDown\n• *namespace*: payments\n• *service*: payments\n• *severity*: critical\n*Annotations:*\n• *summary*: payments service has no available replicas in namespace payments\n",
+            "description": null
+        },
+        "result": {
+            "total_cost": 0.07766909999999999,
+            "total_tokens": 54785,
+            "prompt_tokens": 53530,
+            "completion_tokens": 1255,
+            "cached_tokens": 41022,
+            "reasoning_tokens": 0,
+            "max_completion_tokens_per_call": 476,
+            "max_prompt_tokens_per_call": 12023,
+            "num_compactions": 0,
+            "tool_calls": [
+                {
+                    "tool_call_id": "toolu_bdrk_01Rn1fKrPGYtPpnetGr9TfgY",
+                    "tool_name": "TodoWrite",
+                    "description": "Update investigation tasks",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": null,
+                        "data": "✅ Investigation plan updated with 5 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 0 completed, 3 in progress, 2 pending\n\n[ ] [4] Fetch application logs from payments pods\n[ ] [5] Identify root cause and provide fix\n[~] [1] Check payments service deployment status and replica count\n[~] [2] Examine pods in payments namespace for issues\n[~] [3] Check recent events in payments namespace\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                        "images": null,
+                        "url": null,
+                        "invocation": null,
+                        "params": {
+                            "todos": [
+                                {
+                                    "id": "1",
+                                    "content": "Check payments service deployment status and replica count",
+                                    "status": "in_progress"
+                                },
+                                {
+                                    "id": "2",
+                                    "content": "Examine pods in payments namespace for issues",
+                                    "status": "in_progress"
+                                },
+                                {
+                                    "id": "3",
+                                    "content": "Check recent events in payments namespace",
+                                    "status": "in_progress"
+                                },
+                                {
+                                    "id": "4",
+                                    "content": "Fetch application logs from payments pods",
+                                    "status": "pending"
+                                },
+                                {
+                                    "id": "5",
+                                    "content": "Identify root cause and provide fix",
+                                    "status": "pending"
+                                }
+                            ]
+                        },
+                        "icon_url": null,
+                        "elapsed_seconds": 0.004418373107910156
+                    },
+                    "size": null,
+                    "toolset_name": "core_investigation"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01C1AYwWPwVosmddi4YoYAqj",
+                    "tool_name": "bash",
+                    "description": "kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20\nNo resources found in payments namespace.",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20",
+                        "params": {
+                            "command": "kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20",
+                            "suggested_prefixes": [
+                                "kubectl get",
+                                "tail"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.0613093376159668
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01NStDFqbrm3gTir7h1jnRqP",
+                    "tool_name": "bash",
+                    "description": "kubectl get pods -n payments -o wide",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "kubectl get pods -n payments -o wide\nNo resources found in payments namespace.",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get pods -n payments -o wide",
+                        "params": {
+                            "command": "kubectl get pods -n payments -o wide",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.0703878402709961
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01VFdQBcCPSvvp15u8wQ9Cjh",
+                    "tool_name": "bash",
+                    "description": "kubectl get deployment,replicaset -n payments -o wide",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "kubectl get deployment,replicaset -n payments -o wide\nNo resources found in payments namespace.",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get deployment,replicaset -n payments -o wide",
+                        "params": {
+                            "command": "kubectl get deployment,replicaset -n payments -o wide",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.07531976699829102
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01LxhGUWwfoctXJnWvPMJ8xb",
+                    "tool_name": "bash",
+                    "description": "kubectl get namespace payments",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Error: Command \"kubectl get namespace payments\" returned non-zero exit status 1",
+                        "return_code": 1,
+                        "data": "kubectl get namespace payments\nError from server (NotFound): namespaces \"payments\" not found",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get namespace payments",
+                        "params": {
+                            "command": "kubectl get namespace payments",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.0482935905456543
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_0135dtxZNNR4V5MsZENKs5ci",
+                    "tool_name": "bash",
+                    "description": "kubectl get service -n payments",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "kubectl get service -n payments\nNo resources found in payments namespace.",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get service -n payments",
+                        "params": {
+                            "command": "kubectl get service -n payments",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.05573749542236328
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_011ENoTKfiY98vTCWWfViNK9",
+                    "tool_name": "bash",
+                    "description": "kubectl get all -n payments",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "kubectl get all -n payments\nNo resources found in payments namespace.",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get all -n payments",
+                        "params": {
+                            "command": "kubectl get all -n payments",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.06922149658203125
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01BKfyKbcE1PGmt3ND6hwrnB",
+                    "tool_name": "bash",
+                    "description": "kubectl get namespaces | grep -i payment",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Error: Command \"kubectl get namespaces | grep -i payment\" returned non-zero exit status 1",
+                        "return_code": 1,
+                        "data": "kubectl get namespaces | grep -i payment\n",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get namespaces | grep -i payment",
+                        "params": {
+                            "command": "kubectl get namespaces | grep -i payment",
+                            "suggested_prefixes": [
+                                "kubectl get",
+                                "grep"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.11458063125610352
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_012Wo535ZvkLEXVG86JSrDR1",
+                    "tool_name": "bash",
+                    "description": "kubectl get deployments,pods --all-namespaces | grep -i payment",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Error: Command \"kubectl get deployments,pods --all-namespaces | grep -i payment\" returned non-zero exit status 1",
+                        "return_code": 1,
+                        "data": "kubectl get deployments,pods --all-namespaces | grep -i payment\n",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get deployments,pods --all-namespaces | grep -i payment",
+                        "params": {
+                            "command": "kubectl get deployments,pods --all-namespaces | grep -i payment",
+                            "suggested_prefixes": [
+                                "kubectl get",
+                                "grep"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.14432978630065918
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01VwggJ2MXkHTmvnBdFbDNMo",
+                    "tool_name": "TodoWrite",
+                    "description": "Update investigation tasks",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": null,
+                        "data": "✅ Investigation plan updated with 5 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 5 completed, 0 in progress, 0 pending\n\n[✓] [1] Check payments service deployment status and replica count\n[✓] [2] Examine pods in payments namespace for issues\n[✓] [3] Check recent events in payments namespace\n[✓] [4] Fetch application logs from payments pods\n[✓] [5] Identify root cause and provide fix\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                        "images": null,
+                        "url": null,
+                        "invocation": null,
+                        "params": {
+                            "todos": [
+                                {
+                                    "id": "1",
+                                    "content": "Check payments service deployment status and replica count",
+                                    "status": "completed"
+                                },
+                                {
+                                    "id": "2",
+                                    "content": "Examine pods in payments namespace for issues",
+                                    "status": "completed"
+                                },
+                                {
+                                    "id": "3",
+                                    "content": "Check recent events in payments namespace",
+                                    "status": "completed"
+                                },
+                                {
+                                    "id": "4",
+                                    "content": "Fetch application logs from payments pods",
+                                    "status": "completed"
+                                },
+                                {
+                                    "id": "5",
+                                    "content": "Identify root cause and provide fix",
+                                    "status": "completed"
+                                }
+                            ]
+                        },
+                        "icon_url": null,
+                        "elapsed_seconds": 0.0036721229553222656
+                    },
+                    "size": null,
+                    "toolset_name": "core_investigation"
+                }
+            ],
+            "num_llm_calls": 5,
+            "result": "## Root Cause\n\n**The `payments` namespace does not exist.** The entire namespace has been deleted or was never created, resulting in zero available replicas for the payments service.\n\n## Findings\n\n- No `payments` namespace found in the cluster\n- No deployments, pods, services, or any resources exist in or related to payments\n- No payment-related resources found cluster-wide\n\n## Fix\n\nRedeploy the payments service:\n\n```bash\n# Create the namespace\nkubectl create namespace payments\n\n# Apply your payments service manifests\nkubectl apply -f <payments-deployment-manifests> -n payments\n```\n\nThe alert will resolve once the payments deployment is restored with available replicas.",
+            "unprocessed_result": null,
+            "instructions": [],
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "\nYou are HolmesGPT version 0.39.0, an AI agent for troubleshooting and answering questions about DevOps, IT and observability systems, using tool calls to gather data.\nMake multiple independent tool calls in parallel whenever possible — it saves the user time.\nDo not say 'based on the tool output' or explicitly refer to tools at all.\nIf, after answering, you realize more tool calls are needed, you may call more tools at that point.\nIf you have a concrete suggestion for how the user can fix something, share it even if not asked explicitly.\n\n\n\n\n\n\n\n# Task management (TodoWrite)\n\nCRITICAL: for any investigation requiring multiple steps, you MUST use the TodoWrite tool to plan and track your work:\n* If the user's question is ambiguous or missing critical details, ask for clarification before planning tasks.\n* Otherwise start by calling TodoWrite with your initial task list (each task: `id`, `content`, `status`), and begin working immediately — mark the tasks you start as \"in_progress\" in that same call and issue their tool calls in parallel with it.\n* Work on independent tasks simultaneously; only serialize tasks that depend on another task's results (e.g. \"find pod name\" → \"get pod logs\"). Batch status updates into a single TodoWrite call.\n* Update statuses as you go: \"in_progress\" when starting a task, \"completed\" when done. Add newly-discovered steps to the list.\n* When all tasks are done, evaluate: can you completely answer the user's question, have you reached the actual root cause (five whys), and did the investigation surface new areas to explore? If not, create a new task list for the next phase (e.g. an upstream service or external dependency implicated by what you found) and continue.\n* Before your final answer, complete every task, then do a final review: re-read the user's question and confirm the answer addresses it; trace each claim to specific tool output and hedge anything unverified (\"possible cause\", \"might be\" — never guess values you cannot see, like secrets); confirm exact resource names and complete, runnable commands specific to the user's environment. If gaps remain, keep investigating instead of answering.\n\n\n\n# Investigation guidelines\n\n* Gather data with as many tool calls as needed before responding; keep going until you reach the deepest root cause you can find.\n* Use the \"five whys\" approach: if a problem in service A traces to service B, investigate B too.\n* Even after finding a root cause, keep investigating to find other possible causes and exact details (resource names, versions, labels). If there are multiple possible causes, list them in a numbered list.\n* Always provide specific details from the user's environment — exact resource names, namespaces, versions — not generic examples.\n* If you cannot find the resource the user referred to, assume a possible typo: try substrings and spelling variations.\n* **Adjacent / similarly-named entities:** when the exact entity the user named has no data but similar-named ones do (siblings, same prefix/namespace), report both facts: state explicitly that you found nothing for the exact name (verbatim), report what you found in the similar entities, clearly labeled as coming from a different, related entity — never silently merge the user's name into the found ones — and suggest the user verify the name.\n* Distinguish confirmed facts (directly observed in tool output) from hypotheses. Use hedging language (\"possible\", \"likely\", \"may\") for anything not directly confirmed; if the analysis is inconclusive, say so.\n* Treat error messages as exact diagnostic evidence: `authentication failed` / `password authentication failed` for user X means user X EXISTS; `role does not exist` / `user not found` means the user is absent. These are mutually exclusive — never add \"or the user may not exist\" to an authentication failure.\n* Do not conclude a resource is absent from a running system just because it isn't in deployment configuration — stateful systems accumulate state (SQL, API calls, admin operations) that leaves no K8s trace. If you can't read a value (e.g. a Secret), say you couldn't verify it rather than guessing.\n* Data often contains errors that are irrelevant to the question — ignore them in your conclusion unless you tied them to the actual problem.\n* ALWAYS check application logs when investigating whether an app, pod, service or deployment has issues — \"running\" and healthy-looking does not mean issue-free.\n\n# If investigating Kubernetes problems\n\n* Run as many kubectl commands as needed, walking the ownership chain (e.g. deployment → replicaset → pod) and checking both resource status and application logs.\n* When a pod crashed or an application errors, always run kubectl_describe and fetch the logs.\n* Don't stop at surface answers like \"the pod is pending\" or \"node affinity doesn't match\" — say why (which resource is short, which label doesn't match) and how to fix it.\n* When many pods are affected, checking up to 3 representative pods per deployment is enough.\n* If the user says something isn't working: describe the owner workload and pods (looking for transient issues), check for misconfigured ingresses/services, and read application logs for runtime issues.\n\n\n\n# Available Toolsets\n## Logs\n\n* ALWAYS tell the user what logs you fetched and how: the time period covered (even if it was just the default, e.g. \"Logs from last 1 hour...\"), any limit applied and how many logs were shown vs total (e.g. \"Showing last 100 lines\"), and any filter used (e.g. \"Logs filtered for 'error':\").\n\n* Use the tool `fetch_pod_logs` to access an application's logs yourself — do not ask users to do so.\n* Before fetching logs, ensure the pod exists using kubectl tools. If you find no logs, double-check that the namespace and pod name are exact. If you weren't given the exact pod name or namespace (e.g. only an application or deployment name), find the right pods with kubectl tools and infer from there; ask the user only if you can't.\n* If you have an issue/finding id, use `fetch_finding_by_id` for the issue's time information (`starts_at`, `updated_at`, `ends_at`); then use `start_time=-300` (5 minutes before `end_time`) and `end_time=<issue start_at time>`, widening or narrowing if you get too few or too many logs.\n* If the user did not ask about a specific timeframe, omit `start_time` and `end_time` to use the default.\n\n\n\n## bash\n# Bash Tool\n\nUse the `bash` tool to execute shell commands. Provide `command` plus `suggested_prefixes`: an array with one prefix per command segment (segments are separated by `|`, `&&`, `||`, `;`, `&`).\n\nSimple commands, pipes/chains of them, and environment variable references are auto-approved when every segment's prefix is in the allow list. Scripts and complex constructs (`for`/`while`/`until` loops, `if`/`case`, command substitution `$(...)`/backticks, process substitution) always require user approval — still use them when they're the right tool; the user will be prompted. For scripts, provide prefixes for the key operations inside the script (e.g. `for pod in pod1 pod2; do kubectl logs $pod; done` → `[\"kubectl logs\"]`).\n\n**Command structure:** place identifiers (what you're targeting) first and parameter values last, so prefixes can match: `kubectl scale deployment nginx -n prod --replicas=3` (prefix `kubectl scale deployment nginx -n prod`), not `kubectl scale --replicas=3 deployment nginx -n prod`.\n\n**Choosing prefixes:**\n- Read-only operations → the shortest prefix that commits to read-only behavior: `kubectl get pods -n default` → `kubectl get`; `grep error file.txt` → `grep`; `kubectl get pods | grep error | head -10` → `[\"kubectl get\", \"grep\", \"head\"]`.\n- Operations that can branch to read OR write → a longer prefix that pins the read-only branch: `kubectl config view` (not `kubectl config`, which could also `set`); `git remote -v` (not `git remote`).\n- Destructive/write operations → include the full target identification (action + resource type + name + namespace) but exclude parameter values: `kubectl delete pod my-pod -n default` → `kubectl delete pod my-pod -n default`; `kubectl scale deployment nginx -n prod --replicas=3` → `kubectl scale deployment nginx -n prod`.\n\n## Allowed Commands\n\nCommands matching these prefixes execute immediately without prompting:\n\n\n- `cat /tmp/.holmes`\n\n- `cut`\n\n- `date`\n\n- `echo`\n\n- `grep`\n\n- `head`\n\n- `head /tmp/.holmes`\n\n- `hostname`\n\n- `id`\n\n- `jq`\n\n- `jq /tmp/.holmes`\n\n- `kubectl api-resources`\n\n- `kubectl auth can-i`\n\n- `kubectl cluster-info`\n\n- `kubectl config current-context`\n\n- `kubectl config view`\n\n- `kubectl describe`\n\n- `kubectl diff`\n\n- `kubectl events`\n\n- `kubectl explain`\n\n- `kubectl get`\n\n- `kubectl logs`\n\n- `kubectl top`\n\n- `kubectl version`\n\n- `sort`\n\n- `tail`\n\n- `tail /tmp/.holmes`\n\n- `tr`\n\n- `type`\n\n- `uname`\n\n- `uniq`\n\n- `wc`\n\n- `wc /tmp/.holmes`\n\n- `which`\n\n- `whoami`\n\n\n\n## Blocked Commands\n\nThese commands are blocked and cannot be executed:\n\n- `sudo` (always blocked)\n- `su` (always blocked)\n\n## kubectl-run\nThe tool `kubectl_run_image` will run an image:\n- `kubectl run <name> --image=<image> --rm --attach --restart=Never --i --tty -- <command>`# Disabled & failed Toolsets\n\nThese toolsets are DISABLED (unconfigured) unless marked FAILED (misconfigured). Setup docs per toolset: `https://holmesgpt.dev/data-sources/builtin-toolsets/<name before any slash>/` unless a different URL is given.\n\n* aks/node-health (FAILED, error: `az account show` failed with exit code 127: /bin/sh: az: not found): Set of tools to troubleshoot AKS node health issues\n* aks/core (FAILED, error: `az account show` failed with exit code 127: /bin/sh: az: not found): Set of tools to read Azure Kubernetes Service resources\n* argocd/core (FAILED, error: Environment variable ARGOCD_AUTH_TOKEN was not set): Set of tools to get argocd metadata like list of apps, repositories, projects, etc.\n* cilium/core (FAILED, error: `cilium status` failed with exit code 127: /bin/sh: cilium: not found): Cilium CNI and Hubble network observability tools for troubleshooting network connectivity and security [setup: https://robusta-dev.github.io/holmesgpt/data-sources/builtin-toolsets/cilium/]\n* hubble/observability (FAILED, error: `hubble version` failed with exit code 127: /bin/sh: hubble: not found): Hubble network observability tools for monitoring and troubleshooting network flows [setup: https://robusta-dev.github.io/holmesgpt/data-sources/builtin-toolsets/cilium/#hubble]\n* crossplane/core (FAILED, error: `kubectl api-resources --api-group=pkg.crossplane.io --no-headers 2>/dev/null | grep -q providers` failed with exit code 1): Tools for troubleshooting Crossplane managed resources, compositions, providers, and claims\n* docker/core (FAILED, error: `docker version` failed with exit code 127: /bin/sh: docker: not found): Read access to Docker resources\n* inspektor-gadget/node (FAILED, error: Environment variable ENABLE_INSPEKTOR_GADGET was not set): Inspektor Gadget eBPF-based observability for Kubernetes node-level troubleshooting [setup: https://inspektor-gadget.io/docs/latest/]\n* inspektor-gadget/tcpdump (FAILED, error: Environment variable ENABLE_INSPEKTOR_GADGET was not set): Inspektor Gadget tcpdump gadget for Kubernetes node-level packet capture [setup: https://inspektor-gadget.io/docs/latest/]\n* kubernetes/live-metrics (FAILED, error: `kubectl top nodes` failed with exit code 1: error: Metrics API not available): Provides real-time metrics for pods and nodes\n* kubernetes/krew-extras (FAILED, error: `kubectl version --client && kubectl lineage --version` failed with exit code 1: error: unknown command \"lineage\" for \"kubectl\"): Fetches children/dependents and parents/dependencies resources using kube-lineage installed via `kubectl krew`\n* kubevela/core (FAILED, error: `vela version` failed with exit code 127: /bin/sh: vela: not found): Set of tools to inspect KubeVela applications, components, and workflows\n* openshift/core (FAILED, error: `oc version --client` failed with exit code 127: /bin/sh: oc: not found): Read access to OpenShift cluster resources including projects, routes, and deployment configs\n* openshift/logs (FAILED, error: `oc version --client` failed with exit code 127: /bin/sh: oc: not found): Read pod logs using oc command\n* openshift/live-metrics (FAILED, error: `oc adm top nodes` failed with exit code 127: /bin/sh: oc: not found): Provides real-time metrics for pods and nodes using oc\n* openshift/security (FAILED, error: `oc version --client` failed with exit code 127: /bin/sh: oc: not found): OpenShift security-related resources and configurations\n* slab (FAILED, error: Environment variable SLAB_API_KEY was not set): Fetches slab pages\n* robusta (FAILED, error: Integration with Robusta cloud is disabled): Fetches detailed data about Robusta findings (alerts and configuration changes)\n* grafana/loki: Runs loki log queries using Grafana Loki or Loki directly. [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/grafanaloki/]\n* grafana/tempo: Fetches kubernetes traces from Tempo [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/grafanatempo/]\n* newrelic: Toolset for interacting with New Relic to fetch logs, traces, and execute freeform NRQL queries\n* grafana/dashboards: Provides tools for interacting with Grafana dashboards, including visual rendering of panels and dashboards [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/grafanadashboards/]\n* notion (FAILED, error: Notion toolset is misconfigured. Authorization header is required.): Fetch notion webpages\n* kafka/admin: Fetches metadata from multiple Kafka clusters\n* datadog/logs: Toolset for fetching logs from Datadog, including historical data for pods no longer in the cluster\n* datadog/general: General-purpose Datadog API access for read-only operations including monitors, dashboards, SLOs, incidents, synthetics, logs, metrics, and more. Note: For logs and metrics, prefer using the specialized datadog/logs and datadog/metrics toolsets when available as they provide optimized functionality\n* datadog/metrics: Toolset for fetching metrics and metadata from Datadog, including historical data for pods no longer in the cluster\n* datadog/traces: Toolset for interacting with Datadog APM to fetch and analyze traces\n* opensearch/query_assist (FAILED, error: Environment variable OPENSEARCH_URL was not set): OpenSearch query assist with PPL queries.\n* coralogix: Toolset for interacting with Coralogix to fetch logs, traces, metrics, and execute DataPrime queries [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/coralogix-logs/]\n* rabbitmq/core: Provides tools to interact with RabbitMQ to diagnose cluster health, node status, and specifically network partitions (split-brain).\n* confluence: Fetch and search Confluence pages\n* MongoDBAtlas: The MongoDB Atlas API allows access to Mongodb projects and processes. You can find logs, alerts, events, slow queries and various metrics to understand the state of Mongodb projects. [setup: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/]\n* azure/sql: Analyzes Azure SQL Database performance, health, and operational issues using Azure REST APIs and Query Store data [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/azure-sql/?tab=robusta-helm-chart]\n* servicenow/tables: Tools for retrieving records from ServiceNow tables\n* victorialogs: Query logs from VictoriaLogs using LogsQL. Provides search, log stream discovery, and field/value enumeration.\n* database/sql: Query SQL databases (PostgreSQL, MySQL, MariaDB, ClickHouse, SQL Server, SQLite)\n* elasticsearch/data: Search and query data in Elasticsearch/OpenSearch indices - logs, metrics, documents\n* elasticsearch/cluster: Troubleshoot Elasticsearch/OpenSearch cluster health - shards, nodes, allocation\n* prometheus/metrics: Prometheus integration to fetch metadata and execute PromQL queries\n\n\nIf you need a system you can't reach with your current tools: for a matching FAILED toolset, tell the user and copy its error into your response; for a matching disabled toolset (including when users ask how to set up or grant access to a system), ask the user to configure it and share its setup URL. If no toolset matches, say you're missing an integration for that system and that one can be added via an [HTTP connector](https://holmesgpt.dev/data-sources/api-toolsets/) (quickest for REST APIs — supports auth, endpoint whitelisting and response filtering), an [MCP server](https://holmesgpt.dev/data-sources/remote-mcp-servers/), or a [custom toolset](https://holmesgpt.dev/data-sources/custom-toolsets/).\n\n\n\n# Handling Permission Errors\n\nIf a tool hits a permissions error (e.g. `Error from server (Forbidden):`): identify the missing resource, API group and verbs from the error; check which user/service account you run as and its permissions; report this to the user with a link to https://holmesgpt.dev/data-sources/permissions/\n\n\n\n# Special cases\n\n* Distinguish \"I investigated and found error X caused this problem\" from \"errors prevented me from completing the investigation\". A permission error when running a tool follows the Handling Permission Errors section; a permission error found *inside* a pod's logs is a root cause to explain to the user.\n* Issues are a subset of findings. When asked about an issue or finding and you have an id, use `fetch_finding_by_id`.\n* Reuse results of tools that were already called. If a tool call returns nothing, adjust the parameters instead of repeating it verbatim. When unsure which namespace a resource is in, use a cluster-level tool to locate it.\n\n\n\n# Style guide\n\n* Reply with terse output; be painfully concise; drop filler words.\n* But never at the expense of important data like the root cause and how to fix it.\n* Distinguish confirmed facts from hypotheses (\"possible cause\", \"might be\").\n\n## Example\n\nUser: Why did the checkout service crash?\n(Call a discovery tool to locate the failing resource)\n(Call a logs tool to read the most recent error output)\n\nAI: `checkout` crashed due to an email validation error while handling `/api/create_user`.\nRelevant logs:\n\n```\n2021-01-01T00:00:00.000Z [ERROR] Missing required field 'email' in request body\n```\n\nValidation error led to an unhandled exception causing a crash.\n\n\n\nProvide a terse analysis of the following prometheus alert/issue and why it is firing.\n",
+                    "token_count": 4258
+                },
+                {
+                    "role": "user",
+                    "content": "\n #This is context from the issue:\n{'status': 'active', 'labels': {'alertname': 'ShopPaymentsDown', 'namespace': 'payments', 'service': 'payments', 'severity': 'critical'}, 'annotations': {'summary': 'payments service has no available replicas in namespace payments'}, 'startsAt': datetime.datetime(2026, 8, 18, 7, 42, 3, tzinfo=TzInfo(0)), 'endsAt': datetime.datetime(2026, 8, 18, 23, 0, tzinfo=TzInfo(0)), 'generatorURL': '', 'fingerprint': '29a7f80b68d7799f', 'unique_id': 'ShopPaymentsDown-29a7f80b68d7799f-2026-08-18 07:42:03+00:00', 'duration': datetime.timedelta(seconds=55077), 'name': 'ShopPaymentsDown', 'definition': ''}\n\n\n\nWhen querying tools, always query for the relevant time period. The current UTC date and time are 2026-08-18 07:42:29.676914+00:00. The current UTC timestamp in seconds is 1787038949.\nWhen users mention dates without years (e.g., 'March 25th', 'last May', etc.), assume they either mean the current year (2026) unless context suggests otherwise.",
+                    "token_count": 306
+                },
+                {
+                    "content": "I'll investigate why the ShopPaymentsDown alert is firing for the payments service.",
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"todos\": [{\"id\":\"1\",\"content\":\"Check payments service deployment status and replica count\",\"status\":\"in_progress\"},{\"id\":\"2\",\"content\":\"Examine pods in payments namespace for issues\",\"status\":\"in_progress\"},{\"id\":\"3\",\"content\":\"Check recent events in payments namespace\",\"status\":\"in_progress\"},{\"id\":\"4\",\"content\":\"Fetch application logs from payments pods\",\"status\":\"pending\"},{\"id\":\"5\",\"content\":\"Identify root cause and provide fix\",\"status\":\"pending\"}]}",
+                                "name": "TodoWrite"
+                            },
+                            "id": "toolu_bdrk_01Rn1fKrPGYtPpnetGr9TfgY",
+                            "type": "function"
+                        },
+                        {
+                            "index": 1,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get deployment,replicaset -n payments -o wide\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01VFdQBcCPSvvp15u8wQ9Cjh",
+                            "type": "function"
+                        },
+                        {
+                            "index": 2,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get pods -n payments -o wide\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01NStDFqbrm3gTir7h1jnRqP",
+                            "type": "function"
+                        },
+                        {
+                            "index": 3,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20\", \"suggested_prefixes\": [\"kubectl get\",\"tail\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01C1AYwWPwVosmddi4YoYAqj",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "reasoning": null,
+                        "refusal": null
+                    },
+                    "token_count": 225
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01Rn1fKrPGYtPpnetGr9TfgY",
+                    "role": "tool",
+                    "name": "TodoWrite",
+                    "content": "Params used for the tool call: {\"todos\": [{\"id\": \"1\", \"content\": \"Check payments service deployment status and replica count\", \"status\": \"in_progress\"}, {\"id\": \"2\", \"content\": \"Examine pods in payments namespace for issues\", \"status\": \"in_progress\"}, {\"id\": \"3\", \"content\": \"Check recent events in payments namespace\", \"status\": \"in_progress\"}, {\"id\": \"4\", \"content\": \"Fetch application logs from payments pods\", \"status\": \"pending\"}, {\"id\": \"5\", \"content\": \"Identify root cause and provide fix\", \"status\": \"pending\"}]}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"TodoWrite\", \"tool_call_id\": \"toolu_bdrk_01Rn1fKrPGYtPpnetGr9TfgY\"}✅ Investigation plan updated with 5 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 0 completed, 3 in progress, 2 pending\n\n[ ] [4] Fetch application logs from payments pods\n[ ] [5] Identify root cause and provide fix\n[~] [1] Check payments service deployment status and replica count\n[~] [2] Examine pods in payments namespace for issues\n[~] [3] Check recent events in payments namespace\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                    "token_count": 365
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01C1AYwWPwVosmddi4YoYAqj",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20\", \"suggested_prefixes\": [\"kubectl get\", \"tail\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01C1AYwWPwVosmddi4YoYAqj\"}kubectl get events -n payments --sort-by='.lastTimestamp' | tail -20\nNo resources found in payments namespace.",
+                    "token_count": 155
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01NStDFqbrm3gTir7h1jnRqP",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get pods -n payments -o wide\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01NStDFqbrm3gTir7h1jnRqP\"}kubectl get pods -n payments -o wide\nNo resources found in payments namespace.",
+                    "token_count": 138
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01VFdQBcCPSvvp15u8wQ9Cjh",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get deployment,replicaset -n payments -o wide\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01VFdQBcCPSvvp15u8wQ9Cjh\"}kubectl get deployment,replicaset -n payments -o wide\nNo resources found in payments namespace.",
+                    "token_count": 144
+                },
+                {
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get service -n payments\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_0135dtxZNNR4V5MsZENKs5ci",
+                            "type": "function"
+                        },
+                        {
+                            "index": 1,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get all -n payments\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_011ENoTKfiY98vTCWWfViNK9",
+                            "type": "function"
+                        },
+                        {
+                            "index": 2,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get namespace payments\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01LxhGUWwfoctXJnWvPMJ8xb",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "reasoning": null,
+                        "refusal": null
+                    },
+                    "token_count": 86
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01LxhGUWwfoctXJnWvPMJ8xb",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get namespace payments\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01LxhGUWwfoctXJnWvPMJ8xb\"}Error: Command \"kubectl get namespace payments\" returned non-zero exit status 1:\n\nkubectl get namespace payments\nError from server (NotFound): namespaces \"payments\" not found",
+                    "token_count": 150
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_0135dtxZNNR4V5MsZENKs5ci",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get service -n payments\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_0135dtxZNNR4V5MsZENKs5ci\"}kubectl get service -n payments\nNo resources found in payments namespace.",
+                    "token_count": 130
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_011ENoTKfiY98vTCWWfViNK9",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get all -n payments\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_011ENoTKfiY98vTCWWfViNK9\"}kubectl get all -n payments\nNo resources found in payments namespace.",
+                    "token_count": 124
+                },
+                {
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get namespaces | grep -i payment\", \"suggested_prefixes\": [\"kubectl get\",\"grep\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01BKfyKbcE1PGmt3ND6hwrnB",
+                            "type": "function"
+                        },
+                        {
+                            "index": 1,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get deployments,pods --all-namespaces | grep -i payment\", \"suggested_prefixes\": [\"kubectl get\",\"grep\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_012Wo535ZvkLEXVG86JSrDR1",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "reasoning": null,
+                        "refusal": null
+                    },
+                    "token_count": 75
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01BKfyKbcE1PGmt3ND6hwrnB",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get namespaces | grep -i payment\", \"suggested_prefixes\": [\"kubectl get\", \"grep\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01BKfyKbcE1PGmt3ND6hwrnB\"}Error: Command \"kubectl get namespaces | grep -i payment\" returned non-zero exit status 1:\n\nkubectl get namespaces | grep -i payment\n",
+                    "token_count": 149
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_012Wo535ZvkLEXVG86JSrDR1",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get deployments,pods --all-namespaces | grep -i payment\", \"suggested_prefixes\": [\"kubectl get\", \"grep\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_012Wo535ZvkLEXVG86JSrDR1\"}Error: Command \"kubectl get deployments,pods --all-namespaces | grep -i payment\" returned non-zero exit status 1:\n\nkubectl get deployments,pods --all-namespaces | grep -i payment\n",
+                    "token_count": 159
+                },
+                {
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"todos\": [{\"id\":\"1\",\"content\":\"Check payments service deployment status and replica count\",\"status\":\"completed\"},{\"id\":\"2\",\"content\":\"Examine pods in payments namespace for issues\",\"status\":\"completed\"},{\"id\":\"3\",\"content\":\"Check recent events in payments namespace\",\"status\":\"completed\"},{\"id\":\"4\",\"content\":\"Fetch application logs from payments pods\",\"status\":\"completed\"},{\"id\":\"5\",\"content\":\"Identify root cause and provide fix\",\"status\":\"completed\"}]}",
+                                "name": "TodoWrite"
+                            },
+                            "id": "toolu_bdrk_01VwggJ2MXkHTmvnBdFbDNMo",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "reasoning": null,
+                        "refusal": null
+                    },
+                    "token_count": 102
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01VwggJ2MXkHTmvnBdFbDNMo",
+                    "role": "tool",
+                    "name": "TodoWrite",
+                    "content": "Params used for the tool call: {\"todos\": [{\"id\": \"1\", \"content\": \"Check payments service deployment status and replica count\", \"status\": \"completed\"}, {\"id\": \"2\", \"content\": \"Examine pods in payments namespace for issues\", \"status\": \"completed\"}, {\"id\": \"3\", \"content\": \"Check recent events in payments namespace\", \"status\": \"completed\"}, {\"id\": \"4\", \"content\": \"Fetch application logs from payments pods\", \"status\": \"completed\"}, {\"id\": \"5\", \"content\": \"Identify root cause and provide fix\", \"status\": \"completed\"}]}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"TodoWrite\", \"tool_call_id\": \"toolu_bdrk_01VwggJ2MXkHTmvnBdFbDNMo\"}✅ Investigation plan updated with 5 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 5 completed, 0 in progress, 0 pending\n\n[✓] [1] Check payments service deployment status and replica count\n[✓] [2] Examine pods in payments namespace for issues\n[✓] [3] Check recent events in payments namespace\n[✓] [4] Fetch application logs from payments pods\n[✓] [5] Identify root cause and provide fix\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                    "token_count": 369
+                },
+                {
+                    "content": "## Root Cause\n\n**The `payments` namespace does not exist.** The entire namespace has been deleted or was never created, resulting in zero available replicas for the payments service.\n\n## Findings\n\n- No `payments` namespace found in the cluster\n- No deployments, pods, services, or any resources exist in or related to payments\n- No payment-related resources found cluster-wide\n\n## Fix\n\nRedeploy the payments service:\n\n```bash\n# Create the namespace\nkubectl create namespace payments\n\n# Apply your payments service manifests\nkubectl apply -f <payments-deployment-manifests> -n payments\n```\n\nThe alert will resolve once the payments deployment is restored with available replicas.",
+                    "role": "assistant",
+                    "provider_specific_fields": {
+                        "reasoning": null,
+                        "refusal": null
+                    },
+                    "token_count": 147
+                }
+            ],
+            "metadata": {
+                "usage": {
+                    "prompt_tokens": 12023,
+                    "completion_tokens": 153,
+                    "total_tokens": 12176,
+                    "cached_tokens": 11460
+                },
+                "tokens": {
+                    "total_tokens": 8854,
+                    "tools_tokens": 1883,
+                    "system_tokens": 4258,
+                    "user_tokens": 306,
+                    "tools_to_call_tokens": 1820,
+                    "assistant_tokens": 635,
+                    "other_tokens": 0
+                },
+                "max_tokens": 1000000,
+                "max_output_tokens": 120000,
+                "costs": {
+                    "total_cost": 0.07766909999999999,
+                    "total_tokens": 54785,
+                    "prompt_tokens": 53530,
+                    "completion_tokens": 1255,
+                    "cached_tokens": 41022,
+                    "reasoning_tokens": 0,
+                    "max_completion_tokens_per_call": 476,
+                    "max_prompt_tokens_per_call": 12023,
+                    "num_compactions": 0
+                },
+                "finish_reason": "stop"
+            },
+            "finish_reason": "stop"
+        }
+    }
+]

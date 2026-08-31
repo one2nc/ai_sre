@@ -1,0 +1,513 @@
+[
+    {
+        "issue": {
+            "id": "ShopDatabaseDown-21e3aae4da18aa5a-2026-08-18 07:39:09.063000+00:00",
+            "name": "ShopDatabaseDown",
+            "source_type": "prometheus",
+            "source_instance_id": "http://localhost:9093",
+            "url": "http://mon-kube-prometheus-stack-prometheus.monitoring:9090/graph?g0.expr=kube_deployment_status_replicas_available%7Bdeployment%3D%22postgres%22%2Cnamespace%3D%22shop%22%7D+%3D%3D+0&g0.tab=1",
+            "raw": {
+                "status": "active",
+                "labels": {
+                    "alertname": "ShopDatabaseDown",
+                    "container": "kube-state-metrics",
+                    "deployment": "postgres",
+                    "endpoint": "http",
+                    "instance": "10.244.0.6:8080",
+                    "job": "kube-state-metrics",
+                    "namespace": "shop",
+                    "pod": "mon-kube-state-metrics-56fb68cd9d-8hrnk",
+                    "prometheus": "monitoring/mon-kube-prometheus-stack-prometheus",
+                    "service": "postgres",
+                    "severity": "critical"
+                },
+                "annotations": {
+                    "summary": "Postgres database in shop namespace has no available replicas"
+                },
+                "startsAt": "2026-08-18 07:39:09.063000+00:00",
+                "endsAt": "2026-08-18 07:47:39.063000+00:00",
+                "generatorURL": "http://mon-kube-prometheus-stack-prometheus.monitoring:9090/graph?g0.expr=kube_deployment_status_replicas_available%7Bdeployment%3D%22postgres%22%2Cnamespace%3D%22shop%22%7D+%3D%3D+0&g0.tab=1",
+                "fingerprint": "21e3aae4da18aa5a",
+                "unique_id": "ShopDatabaseDown-21e3aae4da18aa5a-2026-08-18 07:39:09.063000+00:00",
+                "duration": "0:08:30",
+                "name": "ShopDatabaseDown",
+                "definition": "kube_deployment_status_replicas_available{deployment=\"postgres\",namespace=\"shop\"} == 0"
+            },
+            "presentation_status": null,
+            "show_status_in_title": true,
+            "presentation_key_metadata": "*Severity*: critical\n*Start Time*: 2026-08-18 07:39:09 UTC\n*Duration*: 8 minutes",
+            "presentation_all_metadata": "*Labels:*\n• *alertname*: ShopDatabaseDown\n• *container*: kube-state-metrics\n• *deployment*: postgres\n• *endpoint*: http\n• *instance*: 10.244.0.6:8080\n• *job*: kube-state-metrics\n• *namespace*: shop\n• *pod*: mon-kube-state-metrics-56fb68cd9d-8hrnk\n• *prometheus*: monitoring/mon-kube-prometheus-stack-prometheus\n• *service*: postgres\n• *severity*: critical\n*Annotations:*\n• *summary*: Postgres database in shop namespace has no available replicas\n",
+            "description": null
+        },
+        "result": {
+            "total_cost": 0.08629110000000001,
+            "total_tokens": 50868,
+            "prompt_tokens": 49452,
+            "completion_tokens": 1416,
+            "cached_tokens": 34892,
+            "reasoning_tokens": 0,
+            "max_completion_tokens_per_call": 433,
+            "max_prompt_tokens_per_call": 14543,
+            "num_compactions": 0,
+            "tool_calls": [
+                {
+                    "tool_call_id": "toolu_bdrk_01SwyeBVw6Y534CnZB21QLh1",
+                    "tool_name": "TodoWrite",
+                    "description": "Update investigation tasks",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": null,
+                        "data": "✅ Investigation plan updated with 4 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 0 completed, 2 in progress, 2 pending\n\n[ ] [3] Check postgres pod logs for errors\n[ ] [4] Investigate resource constraints or node issues\n[~] [1] Check postgres deployment status and configuration\n[~] [2] Examine postgres pods status and events\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                        "images": null,
+                        "url": null,
+                        "invocation": null,
+                        "params": {
+                            "todos": [
+                                {
+                                    "id": "1",
+                                    "content": "Check postgres deployment status and configuration",
+                                    "status": "in_progress"
+                                },
+                                {
+                                    "id": "2",
+                                    "content": "Examine postgres pods status and events",
+                                    "status": "in_progress"
+                                },
+                                {
+                                    "id": "3",
+                                    "content": "Check postgres pod logs for errors",
+                                    "status": "pending"
+                                },
+                                {
+                                    "id": "4",
+                                    "content": "Investigate resource constraints or node issues",
+                                    "status": "pending"
+                                }
+                            ]
+                        },
+                        "icon_url": null,
+                        "elapsed_seconds": 0.002516508102416992
+                    },
+                    "size": null,
+                    "toolset_name": "core_investigation"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_0199TT3Znew4hb8iattkGaGG",
+                    "tool_name": "bash",
+                    "description": "kubectl get deployment postgres -n shop -o json",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Error: Command \"kubectl get deployment postgres -n shop -o json\" returned non-zero exit status 1",
+                        "return_code": 1,
+                        "data": "kubectl get deployment postgres -n shop -o json\nE0818 07:44:01.043846     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.044484     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.048800     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.049069     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.053147     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get deployment postgres -n shop -o json",
+                        "params": {
+                            "command": "kubectl get deployment postgres -n shop -o json",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.06751418113708496
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01Fnb6B4BEeD28AwLb95jvJz",
+                    "tool_name": "bash",
+                    "description": "kubectl get pods -n shop -l service=postgres -o wide",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Error: Command \"kubectl get pods -n shop -l service=postgres -o wide\" returned non-zero exit status 1",
+                        "return_code": 1,
+                        "data": "kubectl get pods -n shop -l service=postgres -o wide\nE0818 07:44:01.044328     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.044690     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.048817     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.049253     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.053259     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl get pods -n shop -l service=postgres -o wide",
+                        "params": {
+                            "command": "kubectl get pods -n shop -l service=postgres -o wide",
+                            "suggested_prefixes": [
+                                "kubectl get"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.06786346435546875
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01DsSJ5HBbubVC5mhGjQLRqM",
+                    "tool_name": "bash",
+                    "description": "kubectl describe deployment postgres -n shop",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Error: Command \"kubectl describe deployment postgres -n shop\" returned non-zero exit status 1",
+                        "return_code": 1,
+                        "data": "kubectl describe deployment postgres -n shop\nE0818 07:44:01.043993     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.044461     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.048869     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.049249     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.053150     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?",
+                        "images": null,
+                        "url": null,
+                        "invocation": "kubectl describe deployment postgres -n shop",
+                        "params": {
+                            "command": "kubectl describe deployment postgres -n shop",
+                            "suggested_prefixes": [
+                                "kubectl describe"
+                            ],
+                            "timeout": 30
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/svg/console.svg",
+                        "elapsed_seconds": 0.06493258476257324
+                    },
+                    "size": null,
+                    "toolset_name": "bash"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_014C8YwhEYsGwTEMimEDJisT",
+                    "tool_name": "kubernetes_tabular_query",
+                    "description": "filter: kubectl get pods columns=''NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName'' filter=shop",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "error",
+                        "error": "Command `#!/bin/bash\nerr_file=$(mktemp)\noutput=$(kubectl get pods --all-namespaces -o custom-columns=''NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName'' 2>\"$err_file\")\nkubectl_exit=$?\nerr_content=$(cat \"$err_file\" 2>/dev/null)\nrm -f \"$err_file\"\n\nif [ $kubectl_exit -ne 0 ] || [ -z \"$output\" ]; then\n  if command -v jq &>/dev/null; then\n    jq -n --arg stderr \"$err_content\" '{count: 0, header: null, rows: [], stderr: $stderr}'\n  else\n    echo \"=== STDERR ===\"\n    echo \"$err_content\"\n    echo \"=== ROWS ===\"\n    echo \"=== COUNT ===\"\n    echo 0\n  fi\n  exit 0\nfi\n\n# Split header and data rows\nheader=$(echo \"$output\" | head -1)\n\ndata=$(echo \"$output\" | tail -n +2 | grep -E 'shop' || true)\n\n\nif command -v jq &>/dev/null; then\n  if [ -n \"$data\" ]; then\n    rows=$(echo \"$data\" | jq -R . | jq -s '.')\n    count=$(echo \"$data\" | wc -l)\n  else\n    rows=\"[]\"\n    count=0\n  fi\n  jq -n \\\n    --argjson count \"$count\" \\\n    --arg header \"$header\" \\\n    --argjson rows \"$rows\" \\\n    --arg stderr \"$err_content\" \\\n    '{count: $count, header: $header, rows: $rows, stderr: (if $stderr == \"\" then null else $stderr end)}'\nelse\n  echo \"=== STDERR ===\"\n  echo \"$err_content\"\n  echo \"=== HEADER ===\"\n  echo \"$header\"\n  echo \"=== ROWS ===\"\n  echo \"$data\"\n  echo \"=== COUNT ===\"\n  if [ -n \"$data\" ]; then echo \"$data\" | wc -l; else echo 0; fi\nfi` failed with return code 2",
+                        "return_code": 2,
+                        "data": "/tmp/tmpmoba8ruk.sh: line 3: syntax error near unexpected token `(' while looking for matching `)'\n/tmp/tmpmoba8ruk.sh: line 3: `output=$(kubectl get pods --all-namespaces -o custom-columns=''NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName'' 2>\"$err_file\")'",
+                        "images": null,
+                        "url": null,
+                        "invocation": "#!/bin/bash\nerr_file=$(mktemp)\noutput=$(kubectl get pods --all-namespaces -o custom-columns=''NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName'' 2>\"$err_file\")\nkubectl_exit=$?\nerr_content=$(cat \"$err_file\" 2>/dev/null)\nrm -f \"$err_file\"\n\nif [ $kubectl_exit -ne 0 ] || [ -z \"$output\" ]; then\n  if command -v jq &>/dev/null; then\n    jq -n --arg stderr \"$err_content\" '{count: 0, header: null, rows: [], stderr: $stderr}'\n  else\n    echo \"=== STDERR ===\"\n    echo \"$err_content\"\n    echo \"=== ROWS ===\"\n    echo \"=== COUNT ===\"\n    echo 0\n  fi\n  exit 0\nfi\n\n# Split header and data rows\nheader=$(echo \"$output\" | head -1)\n\ndata=$(echo \"$output\" | tail -n +2 | grep -E 'shop' || true)\n\n\nif command -v jq &>/dev/null; then\n  if [ -n \"$data\" ]; then\n    rows=$(echo \"$data\" | jq -R . | jq -s '.')\n    count=$(echo \"$data\" | wc -l)\n  else\n    rows=\"[]\"\n    count=0\n  fi\n  jq -n \\\n    --argjson count \"$count\" \\\n    --arg header \"$header\" \\\n    --argjson rows \"$rows\" \\\n    --arg stderr \"$err_content\" \\\n    '{count: $count, header: $header, rows: $rows, stderr: (if $stderr == \"\" then null else $stderr end)}'\nelse\n  echo \"=== STDERR ===\"\n  echo \"$err_content\"\n  echo \"=== HEADER ===\"\n  echo \"$header\"\n  echo \"=== ROWS ===\"\n  echo \"$data\"\n  echo \"=== COUNT ===\"\n  if [ -n \"$data\" ]; then echo \"$data\" | wc -l; else echo 0; fi\nfi",
+                        "params": {
+                            "kind": "pods",
+                            "columns": "NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName",
+                            "filter_pattern": "shop"
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/gilbarbara/logos/de2c1f96ff6e74ea7ea979b43202e8d4b863c655/logos/kubernetes.svg",
+                        "elapsed_seconds": 0.009613752365112305
+                    },
+                    "size": null,
+                    "toolset_name": "kubernetes/core"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01QX6HPR34gySm2qxJkwBEaT",
+                    "tool_name": "kubernetes_tabular_query",
+                    "description": "filter: kubectl get deployments columns='NAME:.metadata.name,NAMESPACE:.metadata.namespace,READY:.status.readyReplicas,AVAILABLE:.status.availableReplicas,REPLICAS:.status.replicas,UPDATED:.status.updatedReplicas' filter=postgres",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "{\n  \"count\": 0,\n  \"header\": null,\n  \"rows\": [],\n  \"stderr\": \"E0818 07:44:07.357540     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.358167     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.359495     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.359778     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.362993     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?\"\n}",
+                        "images": null,
+                        "url": null,
+                        "invocation": "#!/bin/bash\nerr_file=$(mktemp)\noutput=$(kubectl get deployments --all-namespaces -o custom-columns='NAME:.metadata.name,NAMESPACE:.metadata.namespace,READY:.status.readyReplicas,AVAILABLE:.status.availableReplicas,REPLICAS:.status.replicas,UPDATED:.status.updatedReplicas' 2>\"$err_file\")\nkubectl_exit=$?\nerr_content=$(cat \"$err_file\" 2>/dev/null)\nrm -f \"$err_file\"\n\nif [ $kubectl_exit -ne 0 ] || [ -z \"$output\" ]; then\n  if command -v jq &>/dev/null; then\n    jq -n --arg stderr \"$err_content\" '{count: 0, header: null, rows: [], stderr: $stderr}'\n  else\n    echo \"=== STDERR ===\"\n    echo \"$err_content\"\n    echo \"=== ROWS ===\"\n    echo \"=== COUNT ===\"\n    echo 0\n  fi\n  exit 0\nfi\n\n# Split header and data rows\nheader=$(echo \"$output\" | head -1)\n\ndata=$(echo \"$output\" | tail -n +2 | grep -E 'postgres' || true)\n\n\nif command -v jq &>/dev/null; then\n  if [ -n \"$data\" ]; then\n    rows=$(echo \"$data\" | jq -R . | jq -s '.')\n    count=$(echo \"$data\" | wc -l)\n  else\n    rows=\"[]\"\n    count=0\n  fi\n  jq -n \\\n    --argjson count \"$count\" \\\n    --arg header \"$header\" \\\n    --argjson rows \"$rows\" \\\n    --arg stderr \"$err_content\" \\\n    '{count: $count, header: $header, rows: $rows, stderr: (if $stderr == \"\" then null else $stderr end)}'\nelse\n  echo \"=== STDERR ===\"\n  echo \"$err_content\"\n  echo \"=== HEADER ===\"\n  echo \"$header\"\n  echo \"=== ROWS ===\"\n  echo \"$data\"\n  echo \"=== COUNT ===\"\n  if [ -n \"$data\" ]; then echo \"$data\" | wc -l; else echo 0; fi\nfi",
+                        "params": {
+                            "kind": "deployments",
+                            "columns": "NAME:.metadata.name,NAMESPACE:.metadata.namespace,READY:.status.readyReplicas,AVAILABLE:.status.availableReplicas,REPLICAS:.status.replicas,UPDATED:.status.updatedReplicas",
+                            "filter_pattern": "postgres"
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/gilbarbara/logos/de2c1f96ff6e74ea7ea979b43202e8d4b863c655/logos/kubernetes.svg",
+                        "elapsed_seconds": 0.061165809631347656
+                    },
+                    "size": null,
+                    "toolset_name": "kubernetes/core"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01Wsqe9bqYrkkV2MtPRq4cam",
+                    "tool_name": "kubernetes_jq_query",
+                    "description": "jq query: kubectl get deployments | jq ''.items[] | select(.metadata.name == \"postgres\" and .metadata.namespace == \"shop\")''",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": 0,
+                        "data": "{\n  \"total_items_processed\": 0,\n  \"matches_found\": 0,\n  \"results\": [],\n  \"stderr\": \"Unable to find resource kind 'deployments'. E0818 07:44:07.359158     179 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?\"\n}",
+                        "images": null,
+                        "url": null,
+                        "invocation": "#!/bin/bash\n\n# Collapse multi-line jq expressions (LLMs sometimes write multi-line jq)\n# Note: use $'\\n' syntax instead of '\\n' because Jinja2 interprets \\n as literal newlines\nJQ_FILTER='.items[] | select(.metadata.name == \"postgres\" and .metadata.namespace == \"shop\")'\nJQ_FILTER=$(printf '%s' \"$JQ_FILTER\" | tr $'\\n\\r' '  ')\n\nerr_file=$(mktemp)\n\n# Get the API path for the resource kind using kubectl\nAPI_INFO=$(kubectl api-resources --no-headers 2>>\"$err_file\" | grep \"^deployments \" | head -1)\n\nif [ -z \"$API_INFO\" ]; then\n  err_content=$(cat \"$err_file\" 2>/dev/null)\n  rm -f \"$err_file\"\n  jq -n --arg stderr \"Unable to find resource kind 'deployments'. $err_content\" \\\n    '{total_items_processed: 0, matches_found: 0, results: [], stderr: $stderr}'\n  exit 0\nfi\n\n# Extract NAMESPACED value\nif [[ \"$API_INFO\" == *\" true \"* ]]; then\n  PREFIX=$(echo \"$API_INFO\" | sed 's/ true .*//')\nelif [[ \"$API_INFO\" == *\" false \"* ]]; then\n  PREFIX=$(echo \"$API_INFO\" | sed 's/ false .*//')\nelse\n  err_content=$(cat \"$err_file\" 2>/dev/null)\n  rm -f \"$err_file\"\n  jq -n --arg stderr \"Could not parse API info for 'deployments'. $err_content\" \\\n    '{total_items_processed: 0, matches_found: 0, results: [], stderr: $stderr}'\n  exit 0\nfi\n\n# Trim trailing spaces from prefix and collapse internal spaces\nPREFIX=$(echo \"$PREFIX\" | sed 's/  *$//' | sed 's/  */ /g')\n\nIFS=' ' read -ra PREFIX_FIELDS <<< \"$PREFIX\"\nFIELD_COUNT=0\nfor field in \"${PREFIX_FIELDS[@]}\"; do\n  ((FIELD_COUNT++))\ndone\n\nRESOURCE_NAME=\"${PREFIX_FIELDS[0]}\"\nif [ $FIELD_COUNT -ge 2 ]; then\n  API_VERSION=\"${PREFIX_FIELDS[$((FIELD_COUNT - 1))]}\"\nelse\n  API_VERSION=\"\"\nfi\n\nif [ -z \"$API_VERSION\" ] || [ -z \"$RESOURCE_NAME\" ]; then\n  err_content=$(cat \"$err_file\" 2>/dev/null)\n  rm -f \"$err_file\"\n  jq -n --arg stderr \"Unable to parse API info for resource kind 'deployments'. $err_content\" \\\n    '{total_items_processed: 0, matches_found: 0, results: [], stderr: $stderr}'\n  exit 0\nfi\n\n# Build API path\nif [[ \"$API_VERSION\" == \"v1\" ]]; then\n  API_PATH=\"/api/v1/${RESOURCE_NAME}\"\nelse\n  API_PATH=\"/apis/${API_VERSION}/${RESOURCE_NAME}\"\nfi\n\n# Process resources in chunks using API pagination\nLIMIT=500\nCONTINUE=\"\"\nPROCESSED=0\nTOTAL_MATCHES=0\nALL_MATCHES=\"\"\n\nwhile true; do\n  if [ -z \"$CONTINUE\" ]; then\n    QUERY=\"${API_PATH}?limit=${LIMIT}\"\n  else\n    QUERY=\"${API_PATH}?limit=${LIMIT}&continue=${CONTINUE}\"\n  fi\n\n  OUTPUT=$(kubectl get --raw \"$QUERY\" 2>>\"$err_file\")\n  exit_code=$?\n\n  if [ $exit_code -ne 0 ]; then\n    err_content=$(cat \"$err_file\" 2>/dev/null)\n    rm -f \"$err_file\"\n    jq -n --arg stderr \"kubectl get --raw failed for $QUERY. $err_content\" \\\n      --argjson total \"$PROCESSED\" \\\n      '{total_items_processed: $total, matches_found: 0, results: [], stderr: $stderr}'\n    exit 0\n  fi\n\n  ITEMS_COUNT=$(echo \"$OUTPUT\" | jq '.items | length')\n\n  MATCHES=$(echo \"$OUTPUT\" | jq -c \"$JQ_FILTER\" 2>>\"$err_file\")\n  jq_exit=$?\n  if [ $jq_exit -ne 0 ]; then\n    err_content=$(cat \"$err_file\" 2>/dev/null)\n    rm -f \"$err_file\"\n    jq -n --arg stderr \"jq expression failed. $err_content\" \\\n      --argjson total \"$PROCESSED\" \\\n      '{total_items_processed: $total, matches_found: 0, results: [], stderr: $stderr}'\n    exit 0\n  fi\n\n  if [ \"$ITEMS_COUNT\" -gt 0 ]; then\n    if [ -n \"$MATCHES\" ]; then\n      if [ -z \"$ALL_MATCHES\" ]; then\n        ALL_MATCHES=\"$MATCHES\"\n      else\n        ALL_MATCHES=\"$ALL_MATCHES\"$'\\n'\"$MATCHES\"\n      fi\n      MATCH_COUNT=$(echo \"$MATCHES\" | grep -c . || true)\n      TOTAL_MATCHES=$((TOTAL_MATCHES + MATCH_COUNT))\n    fi\n    PROCESSED=$((PROCESSED + ITEMS_COUNT))\n  fi\n\n  CONTINUE=$(echo \"$OUTPUT\" | jq -r '.metadata.continue // empty')\n\n  if [ -z \"$CONTINUE\" ]; then\n    break\n  fi\ndone\n\nerr_content=$(cat \"$err_file\" 2>/dev/null)\nrm -f \"$err_file\"\n\n# Output results as a JSON object with metadata\nif [ -n \"$ALL_MATCHES\" ]; then\n  RESULTS=$(echo \"$ALL_MATCHES\" | jq -s '.')\nelse\n  RESULTS=\"[]\"\nfi\n\njq -n \\\n  --argjson results \"$RESULTS\" \\\n  --argjson total_items_processed \"$PROCESSED\" \\\n  --argjson matches_found \"$TOTAL_MATCHES\" \\\n  --arg stderr \"$err_content\" \\\n  '{total_items_processed: $total_items_processed, matches_found: $matches_found, results: $results, stderr: (if $stderr == \"\" then null else $stderr end)}'",
+                        "params": {
+                            "kind": "deployments",
+                            "jq_expr": ".items[] | select(.metadata.name == \"postgres\" and .metadata.namespace == \"shop\")"
+                        },
+                        "icon_url": "https://raw.githubusercontent.com/gilbarbara/logos/de2c1f96ff6e74ea7ea979b43202e8d4b863c655/logos/kubernetes.svg",
+                        "elapsed_seconds": 0.05649924278259277
+                    },
+                    "size": null,
+                    "toolset_name": "kubernetes/core"
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_016i5rtE4ETSwP38kmzcyHkH",
+                    "tool_name": "TodoWrite",
+                    "description": "Update investigation tasks",
+                    "result": {
+                        "schema_version": "robusta:v1.0.0",
+                        "status": "success",
+                        "error": null,
+                        "return_code": null,
+                        "data": "✅ Investigation plan updated with 5 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 1 completed, 0 in progress, 0 pending\n\n[✓] [5] Analyze alert based on available context\n[?] [1] Check postgres deployment status and configuration\n[?] [2] Examine postgres pods status and events\n[?] [3] Check postgres pod logs for errors\n[?] [4] Investigate resource constraints or node issues\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                        "images": null,
+                        "url": null,
+                        "invocation": null,
+                        "params": {
+                            "todos": [
+                                {
+                                    "id": "1",
+                                    "content": "Check postgres deployment status and configuration",
+                                    "status": "failed"
+                                },
+                                {
+                                    "id": "2",
+                                    "content": "Examine postgres pods status and events",
+                                    "status": "failed"
+                                },
+                                {
+                                    "id": "3",
+                                    "content": "Check postgres pod logs for errors",
+                                    "status": "failed"
+                                },
+                                {
+                                    "id": "4",
+                                    "content": "Investigate resource constraints or node issues",
+                                    "status": "failed"
+                                },
+                                {
+                                    "id": "5",
+                                    "content": "Analyze alert based on available context",
+                                    "status": "completed"
+                                }
+                            ]
+                        },
+                        "icon_url": null,
+                        "elapsed_seconds": 0.0026514530181884766
+                    },
+                    "size": null,
+                    "toolset_name": "core_investigation"
+                }
+            ],
+            "num_llm_calls": 4,
+            "result": "## Analysis\n\n**ShopDatabaseDown Alert - CRITICAL**\n\nThe alert fired because the postgres deployment in the `shop` namespace has **zero available replicas**.\n\n**Alert Details:**\n- **Metric**: `kube_deployment_status_replicas_available{deployment=\"postgres\",namespace=\"shop\"} == 0`\n- **Duration**: ~8.5 minutes (started 2026-08-18 07:39:09 UTC, ended 07:47:39 UTC)\n- **Severity**: Critical\n- **Status**: Active (alert was firing at investigation time 07:43:54 UTC)\n\n**Root Cause:**\nThe postgres database deployment has no running, ready replicas. This means the database is completely unavailable, likely causing failures in any shop application components that depend on it.\n\n**Possible Causes:**\n1. **Pod crash loop** - containers failing to start due to misconfiguration, missing dependencies, or application errors\n2. **Resource constraints** - insufficient CPU/memory on nodes preventing pod scheduling\n3. **Image pull failures** - unable to pull the postgres container image\n4. **Node issues** - nodes unavailable or pods evicted\n5. **Configuration errors** - invalid environment variables, missing secrets/configmaps, or volume mount issues\n\n**Investigation Blocked:**\nUnable to complete deeper investigation due to Kubernetes API connectivity issues (`connection refused` to 127.0.0.1:6444). The cluster API server appears unreachable from the investigation environment.\n\n**Recommended Actions:**\n1. Check postgres deployment: `kubectl get deployment postgres -n shop`\n2. Inspect pod status: `kubectl get pods -n shop -l deployment=postgres`\n3. Review pod events: `kubectl describe deployment postgres -n shop`\n4. Check logs: `kubectl logs -n shop -l deployment=postgres --tail=100`\n5. Verify node capacity and pod resource requests",
+            "unprocessed_result": null,
+            "instructions": [],
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "\nYou are HolmesGPT version 0.39.0, an AI agent for troubleshooting and answering questions about DevOps, IT and observability systems, using tool calls to gather data.\nMake multiple independent tool calls in parallel whenever possible — it saves the user time.\nDo not say 'based on the tool output' or explicitly refer to tools at all.\nIf, after answering, you realize more tool calls are needed, you may call more tools at that point.\nIf you have a concrete suggestion for how the user can fix something, share it even if not asked explicitly.\n\n\n\n\n\n\n\n# Task management (TodoWrite)\n\nCRITICAL: for any investigation requiring multiple steps, you MUST use the TodoWrite tool to plan and track your work:\n* If the user's question is ambiguous or missing critical details, ask for clarification before planning tasks.\n* Otherwise start by calling TodoWrite with your initial task list (each task: `id`, `content`, `status`), and begin working immediately — mark the tasks you start as \"in_progress\" in that same call and issue their tool calls in parallel with it.\n* Work on independent tasks simultaneously; only serialize tasks that depend on another task's results (e.g. \"find pod name\" → \"get pod logs\"). Batch status updates into a single TodoWrite call.\n* Update statuses as you go: \"in_progress\" when starting a task, \"completed\" when done. Add newly-discovered steps to the list.\n* When all tasks are done, evaluate: can you completely answer the user's question, have you reached the actual root cause (five whys), and did the investigation surface new areas to explore? If not, create a new task list for the next phase (e.g. an upstream service or external dependency implicated by what you found) and continue.\n* Before your final answer, complete every task, then do a final review: re-read the user's question and confirm the answer addresses it; trace each claim to specific tool output and hedge anything unverified (\"possible cause\", \"might be\" — never guess values you cannot see, like secrets); confirm exact resource names and complete, runnable commands specific to the user's environment. If gaps remain, keep investigating instead of answering.\n\n\n\n# Investigation guidelines\n\n* Gather data with as many tool calls as needed before responding; keep going until you reach the deepest root cause you can find.\n* Use the \"five whys\" approach: if a problem in service A traces to service B, investigate B too.\n* Even after finding a root cause, keep investigating to find other possible causes and exact details (resource names, versions, labels). If there are multiple possible causes, list them in a numbered list.\n* Always provide specific details from the user's environment — exact resource names, namespaces, versions — not generic examples.\n* If you cannot find the resource the user referred to, assume a possible typo: try substrings and spelling variations.\n* **Adjacent / similarly-named entities:** when the exact entity the user named has no data but similar-named ones do (siblings, same prefix/namespace), report both facts: state explicitly that you found nothing for the exact name (verbatim), report what you found in the similar entities, clearly labeled as coming from a different, related entity — never silently merge the user's name into the found ones — and suggest the user verify the name.\n* Distinguish confirmed facts (directly observed in tool output) from hypotheses. Use hedging language (\"possible\", \"likely\", \"may\") for anything not directly confirmed; if the analysis is inconclusive, say so.\n* Treat error messages as exact diagnostic evidence: `authentication failed` / `password authentication failed` for user X means user X EXISTS; `role does not exist` / `user not found` means the user is absent. These are mutually exclusive — never add \"or the user may not exist\" to an authentication failure.\n* Do not conclude a resource is absent from a running system just because it isn't in deployment configuration — stateful systems accumulate state (SQL, API calls, admin operations) that leaves no K8s trace. If you can't read a value (e.g. a Secret), say you couldn't verify it rather than guessing.\n* Data often contains errors that are irrelevant to the question — ignore them in your conclusion unless you tied them to the actual problem.\n* ALWAYS check application logs when investigating whether an app, pod, service or deployment has issues — \"running\" and healthy-looking does not mean issue-free.\n\n# If investigating Kubernetes problems\n\n* Run as many kubectl commands as needed, walking the ownership chain (e.g. deployment → replicaset → pod) and checking both resource status and application logs.\n* When a pod crashed or an application errors, always run kubectl_describe and fetch the logs.\n* Don't stop at surface answers like \"the pod is pending\" or \"node affinity doesn't match\" — say why (which resource is short, which label doesn't match) and how to fix it.\n* When many pods are affected, checking up to 3 representative pods per deployment is enough.\n* If the user says something isn't working: describe the owner workload and pods (looking for transient issues), check for misconfigured ingresses/services, and read application logs for runtime issues.\n\n\n\n# Available Toolsets\n## Logs\n\n* ALWAYS tell the user what logs you fetched and how: the time period covered (even if it was just the default, e.g. \"Logs from last 1 hour...\"), any limit applied and how many logs were shown vs total (e.g. \"Showing last 100 lines\"), and any filter used (e.g. \"Logs filtered for 'error':\").\n\n* Use the tool `fetch_pod_logs` to access an application's logs yourself — do not ask users to do so.\n* Before fetching logs, ensure the pod exists using kubectl tools. If you find no logs, double-check that the namespace and pod name are exact. If you weren't given the exact pod name or namespace (e.g. only an application or deployment name), find the right pods with kubectl tools and infer from there; ask the user only if you can't.\n* If you have an issue/finding id, use `fetch_finding_by_id` for the issue's time information (`starts_at`, `updated_at`, `ends_at`); then use `start_time=-300` (5 minutes before `end_time`) and `end_time=<issue start_at time>`, widening or narrowing if you get too few or too many logs.\n* If the user did not ask about a specific timeframe, omit `start_time` and `end_time` to use the default.\n\n\n\n## bash\n# Bash Tool\n\nUse the `bash` tool to execute shell commands. Provide `command` plus `suggested_prefixes`: an array with one prefix per command segment (segments are separated by `|`, `&&`, `||`, `;`, `&`).\n\nSimple commands, pipes/chains of them, and environment variable references are auto-approved when every segment's prefix is in the allow list. Scripts and complex constructs (`for`/`while`/`until` loops, `if`/`case`, command substitution `$(...)`/backticks, process substitution) always require user approval — still use them when they're the right tool; the user will be prompted. For scripts, provide prefixes for the key operations inside the script (e.g. `for pod in pod1 pod2; do kubectl logs $pod; done` → `[\"kubectl logs\"]`).\n\n**Command structure:** place identifiers (what you're targeting) first and parameter values last, so prefixes can match: `kubectl scale deployment nginx -n prod --replicas=3` (prefix `kubectl scale deployment nginx -n prod`), not `kubectl scale --replicas=3 deployment nginx -n prod`.\n\n**Choosing prefixes:**\n- Read-only operations → the shortest prefix that commits to read-only behavior: `kubectl get pods -n default` → `kubectl get`; `grep error file.txt` → `grep`; `kubectl get pods | grep error | head -10` → `[\"kubectl get\", \"grep\", \"head\"]`.\n- Operations that can branch to read OR write → a longer prefix that pins the read-only branch: `kubectl config view` (not `kubectl config`, which could also `set`); `git remote -v` (not `git remote`).\n- Destructive/write operations → include the full target identification (action + resource type + name + namespace) but exclude parameter values: `kubectl delete pod my-pod -n default` → `kubectl delete pod my-pod -n default`; `kubectl scale deployment nginx -n prod --replicas=3` → `kubectl scale deployment nginx -n prod`.\n\n## Allowed Commands\n\nCommands matching these prefixes execute immediately without prompting:\n\n\n- `cat /tmp/.holmes`\n\n- `cut`\n\n- `date`\n\n- `echo`\n\n- `grep`\n\n- `head`\n\n- `head /tmp/.holmes`\n\n- `hostname`\n\n- `id`\n\n- `jq`\n\n- `jq /tmp/.holmes`\n\n- `kubectl api-resources`\n\n- `kubectl auth can-i`\n\n- `kubectl cluster-info`\n\n- `kubectl config current-context`\n\n- `kubectl config view`\n\n- `kubectl describe`\n\n- `kubectl diff`\n\n- `kubectl events`\n\n- `kubectl explain`\n\n- `kubectl get`\n\n- `kubectl logs`\n\n- `kubectl top`\n\n- `kubectl version`\n\n- `sort`\n\n- `tail`\n\n- `tail /tmp/.holmes`\n\n- `tr`\n\n- `type`\n\n- `uname`\n\n- `uniq`\n\n- `wc`\n\n- `wc /tmp/.holmes`\n\n- `which`\n\n- `whoami`\n\n\n\n## Blocked Commands\n\nThese commands are blocked and cannot be executed:\n\n- `sudo` (always blocked)\n- `su` (always blocked)\n\n## kubectl-run\nThe tool `kubectl_run_image` will run an image:\n- `kubectl run <name> --image=<image> --rm --attach --restart=Never --i --tty -- <command>`# Disabled & failed Toolsets\n\nThese toolsets are DISABLED (unconfigured) unless marked FAILED (misconfigured). Setup docs per toolset: `https://holmesgpt.dev/data-sources/builtin-toolsets/<name before any slash>/` unless a different URL is given.\n\n* aks/node-health (FAILED, error: `az account show` failed with exit code 127: /bin/sh: az: not found): Set of tools to troubleshoot AKS node health issues\n* aks/core (FAILED, error: `az account show` failed with exit code 127: /bin/sh: az: not found): Set of tools to read Azure Kubernetes Service resources\n* argocd/core (FAILED, error: Environment variable ARGOCD_AUTH_TOKEN was not set): Set of tools to get argocd metadata like list of apps, repositories, projects, etc.\n* cilium/core (FAILED, error: `cilium status` failed with exit code 127: /bin/sh: cilium: not found): Cilium CNI and Hubble network observability tools for troubleshooting network connectivity and security [setup: https://robusta-dev.github.io/holmesgpt/data-sources/builtin-toolsets/cilium/]\n* hubble/observability (FAILED, error: `hubble version` failed with exit code 127: /bin/sh: hubble: not found): Hubble network observability tools for monitoring and troubleshooting network flows [setup: https://robusta-dev.github.io/holmesgpt/data-sources/builtin-toolsets/cilium/#hubble]\n* crossplane/core (FAILED, error: `kubectl api-resources --api-group=pkg.crossplane.io --no-headers 2>/dev/null | grep -q providers` failed with exit code 1): Tools for troubleshooting Crossplane managed resources, compositions, providers, and claims\n* docker/core (FAILED, error: `docker version` failed with exit code 127: /bin/sh: docker: not found): Read access to Docker resources\n* inspektor-gadget/node (FAILED, error: Environment variable ENABLE_INSPEKTOR_GADGET was not set): Inspektor Gadget eBPF-based observability for Kubernetes node-level troubleshooting [setup: https://inspektor-gadget.io/docs/latest/]\n* inspektor-gadget/tcpdump (FAILED, error: Environment variable ENABLE_INSPEKTOR_GADGET was not set): Inspektor Gadget tcpdump gadget for Kubernetes node-level packet capture [setup: https://inspektor-gadget.io/docs/latest/]\n* kubernetes/live-metrics (FAILED, error: `kubectl top nodes` failed with exit code 1: The connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?): Provides real-time metrics for pods and nodes\n* kubernetes/krew-extras (FAILED, error: `kubectl version --client && kubectl lineage --version` failed with exit code 1: error: unknown command \"lineage\" for \"kubectl\"): Fetches children/dependents and parents/dependencies resources using kube-lineage installed via `kubectl krew`\n* kubevela/core (FAILED, error: `vela version` failed with exit code 127: /bin/sh: vela: not found): Set of tools to inspect KubeVela applications, components, and workflows\n* openshift/core (FAILED, error: `oc version --client` failed with exit code 127: /bin/sh: oc: not found): Read access to OpenShift cluster resources including projects, routes, and deployment configs\n* openshift/logs (FAILED, error: `oc version --client` failed with exit code 127: /bin/sh: oc: not found): Read pod logs using oc command\n* openshift/live-metrics (FAILED, error: `oc adm top nodes` failed with exit code 127: /bin/sh: oc: not found): Provides real-time metrics for pods and nodes using oc\n* openshift/security (FAILED, error: `oc version --client` failed with exit code 127: /bin/sh: oc: not found): OpenShift security-related resources and configurations\n* slab (FAILED, error: Environment variable SLAB_API_KEY was not set): Fetches slab pages\n* robusta (FAILED, error: Integration with Robusta cloud is disabled): Fetches detailed data about Robusta findings (alerts and configuration changes)\n* grafana/loki: Runs loki log queries using Grafana Loki or Loki directly. [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/grafanaloki/]\n* grafana/tempo: Fetches kubernetes traces from Tempo [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/grafanatempo/]\n* newrelic: Toolset for interacting with New Relic to fetch logs, traces, and execute freeform NRQL queries\n* grafana/dashboards: Provides tools for interacting with Grafana dashboards, including visual rendering of panels and dashboards [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/grafanadashboards/]\n* notion (FAILED, error: Notion toolset is misconfigured. Authorization header is required.): Fetch notion webpages\n* kafka/admin: Fetches metadata from multiple Kafka clusters\n* datadog/logs: Toolset for fetching logs from Datadog, including historical data for pods no longer in the cluster\n* datadog/general: General-purpose Datadog API access for read-only operations including monitors, dashboards, SLOs, incidents, synthetics, logs, metrics, and more. Note: For logs and metrics, prefer using the specialized datadog/logs and datadog/metrics toolsets when available as they provide optimized functionality\n* datadog/metrics: Toolset for fetching metrics and metadata from Datadog, including historical data for pods no longer in the cluster\n* datadog/traces: Toolset for interacting with Datadog APM to fetch and analyze traces\n* opensearch/query_assist (FAILED, error: Environment variable OPENSEARCH_URL was not set): OpenSearch query assist with PPL queries.\n* coralogix: Toolset for interacting with Coralogix to fetch logs, traces, metrics, and execute DataPrime queries [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/coralogix-logs/]\n* rabbitmq/core: Provides tools to interact with RabbitMQ to diagnose cluster health, node status, and specifically network partitions (split-brain).\n* confluence: Fetch and search Confluence pages\n* MongoDBAtlas: The MongoDB Atlas API allows access to Mongodb projects and processes. You can find logs, alerts, events, slow queries and various metrics to understand the state of Mongodb projects. [setup: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/]\n* azure/sql: Analyzes Azure SQL Database performance, health, and operational issues using Azure REST APIs and Query Store data [setup: https://holmesgpt.dev/data-sources/builtin-toolsets/azure-sql/?tab=robusta-helm-chart]\n* servicenow/tables: Tools for retrieving records from ServiceNow tables\n* victorialogs: Query logs from VictoriaLogs using LogsQL. Provides search, log stream discovery, and field/value enumeration.\n* database/sql: Query SQL databases (PostgreSQL, MySQL, MariaDB, ClickHouse, SQL Server, SQLite)\n* elasticsearch/data: Search and query data in Elasticsearch/OpenSearch indices - logs, metrics, documents\n* elasticsearch/cluster: Troubleshoot Elasticsearch/OpenSearch cluster health - shards, nodes, allocation\n* prometheus/metrics: Prometheus integration to fetch metadata and execute PromQL queries\n\n\nIf you need a system you can't reach with your current tools: for a matching FAILED toolset, tell the user and copy its error into your response; for a matching disabled toolset (including when users ask how to set up or grant access to a system), ask the user to configure it and share its setup URL. If no toolset matches, say you're missing an integration for that system and that one can be added via an [HTTP connector](https://holmesgpt.dev/data-sources/api-toolsets/) (quickest for REST APIs — supports auth, endpoint whitelisting and response filtering), an [MCP server](https://holmesgpt.dev/data-sources/remote-mcp-servers/), or a [custom toolset](https://holmesgpt.dev/data-sources/custom-toolsets/).\n\n\n\n# Handling Permission Errors\n\nIf a tool hits a permissions error (e.g. `Error from server (Forbidden):`): identify the missing resource, API group and verbs from the error; check which user/service account you run as and its permissions; report this to the user with a link to https://holmesgpt.dev/data-sources/permissions/\n\n\n\n# Special cases\n\n* Distinguish \"I investigated and found error X caused this problem\" from \"errors prevented me from completing the investigation\". A permission error when running a tool follows the Handling Permission Errors section; a permission error found *inside* a pod's logs is a root cause to explain to the user.\n* Issues are a subset of findings. When asked about an issue or finding and you have an id, use `fetch_finding_by_id`.\n* Reuse results of tools that were already called. If a tool call returns nothing, adjust the parameters instead of repeating it verbatim. When unsure which namespace a resource is in, use a cluster-level tool to locate it.\n\n\n\n# Style guide\n\n* Reply with terse output; be painfully concise; drop filler words.\n* But never at the expense of important data like the root cause and how to fix it.\n* Distinguish confirmed facts from hypotheses (\"possible cause\", \"might be\").\n\n## Example\n\nUser: Why did the checkout service crash?\n(Call a discovery tool to locate the failing resource)\n(Call a logs tool to read the most recent error output)\n\nAI: `checkout` crashed due to an email validation error while handling `/api/create_user`.\nRelevant logs:\n\n```\n2021-01-01T00:00:00.000Z [ERROR] Missing required field 'email' in request body\n```\n\nValidation error led to an unhandled exception causing a crash.\n\n\n\nProvide a terse analysis of the following prometheus alert/issue and why it is firing.\n",
+                    "token_count": 4279
+                },
+                {
+                    "role": "user",
+                    "content": "\n #This is context from the issue:\n{'status': 'active', 'labels': {'alertname': 'ShopDatabaseDown', 'container': 'kube-state-metrics', 'deployment': 'postgres', 'endpoint': 'http', 'instance': '10.244.0.6:8080', 'job': 'kube-state-metrics', 'namespace': 'shop', 'pod': 'mon-kube-state-metrics-56fb68cd9d-8hrnk', 'prometheus': 'monitoring/mon-kube-prometheus-stack-prometheus', 'service': 'postgres', 'severity': 'critical'}, 'annotations': {'summary': 'Postgres database in shop namespace has no available replicas'}, 'startsAt': datetime.datetime(2026, 8, 18, 7, 39, 9, 63000, tzinfo=TzInfo(0)), 'endsAt': datetime.datetime(2026, 8, 18, 7, 47, 39, 63000, tzinfo=TzInfo(0)), 'generatorURL': 'http://mon-kube-prometheus-stack-prometheus.monitoring:9090/graph?g0.expr=kube_deployment_status_replicas_available%7Bdeployment%3D%22postgres%22%2Cnamespace%3D%22shop%22%7D+%3D%3D+0&g0.tab=1', 'fingerprint': '21e3aae4da18aa5a', 'unique_id': 'ShopDatabaseDown-21e3aae4da18aa5a-2026-08-18 07:39:09.063000+00:00', 'duration': datetime.timedelta(seconds=510), 'name': 'ShopDatabaseDown', 'definition': 'kube_deployment_status_replicas_available{deployment=\"postgres\",namespace=\"shop\"} == 0'}\n\n\n\nWhen querying tools, always query for the relevant time period. The current UTC date and time are 2026-08-18 07:43:54.523759+00:00. The current UTC timestamp in seconds is 1787039034.\nWhen users mention dates without years (e.g., 'March 25th', 'last May', etc.), assume they either mean the current year (2026) unless context suggests otherwise.",
+                    "token_count": 494
+                },
+                {
+                    "content": "I'll investigate why the ShopDatabaseDown alert is firing for the postgres deployment in the shop namespace.",
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"todos\": [{\"id\":\"1\",\"content\":\"Check postgres deployment status and configuration\",\"status\":\"in_progress\"},{\"id\":\"2\",\"content\":\"Examine postgres pods status and events\",\"status\":\"in_progress\"},{\"id\":\"3\",\"content\":\"Check postgres pod logs for errors\",\"status\":\"pending\"},{\"id\":\"4\",\"content\":\"Investigate resource constraints or node issues\",\"status\":\"pending\"}]}",
+                                "name": "TodoWrite"
+                            },
+                            "id": "toolu_bdrk_01SwyeBVw6Y534CnZB21QLh1",
+                            "type": "function"
+                        },
+                        {
+                            "index": 1,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get deployment postgres -n shop -o json\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_0199TT3Znew4hb8iattkGaGG",
+                            "type": "function"
+                        },
+                        {
+                            "index": 2,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl get pods -n shop -l service=postgres -o wide\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01Fnb6B4BEeD28AwLb95jvJz",
+                            "type": "function"
+                        },
+                        {
+                            "index": 3,
+                            "function": {
+                                "arguments": "{\"command\": \"kubectl describe deployment postgres -n shop\", \"suggested_prefixes\": [\"kubectl describe\"], \"timeout\": 30}",
+                                "name": "bash"
+                            },
+                            "id": "toolu_bdrk_01DsSJ5HBbubVC5mhGjQLRqM",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "refusal": null,
+                        "reasoning": null
+                    },
+                    "token_count": 198
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01SwyeBVw6Y534CnZB21QLh1",
+                    "role": "tool",
+                    "name": "TodoWrite",
+                    "content": "Params used for the tool call: {\"todos\": [{\"id\": \"1\", \"content\": \"Check postgres deployment status and configuration\", \"status\": \"in_progress\"}, {\"id\": \"2\", \"content\": \"Examine postgres pods status and events\", \"status\": \"in_progress\"}, {\"id\": \"3\", \"content\": \"Check postgres pod logs for errors\", \"status\": \"pending\"}, {\"id\": \"4\", \"content\": \"Investigate resource constraints or node issues\", \"status\": \"pending\"}]}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"TodoWrite\", \"tool_call_id\": \"toolu_bdrk_01SwyeBVw6Y534CnZB21QLh1\"}✅ Investigation plan updated with 4 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 0 completed, 2 in progress, 2 pending\n\n[ ] [3] Check postgres pod logs for errors\n[ ] [4] Investigate resource constraints or node issues\n[~] [1] Check postgres deployment status and configuration\n[~] [2] Examine postgres pods status and events\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                    "token_count": 321
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_0199TT3Znew4hb8iattkGaGG",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get deployment postgres -n shop -o json\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_0199TT3Znew4hb8iattkGaGG\"}Error: Command \"kubectl get deployment postgres -n shop -o json\" returned non-zero exit status 1:\n\nkubectl get deployment postgres -n shop -o json\nE0818 07:44:01.043846     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.044484     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.048800     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.049069     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.053147     132 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?",
+                    "token_count": 556
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01Fnb6B4BEeD28AwLb95jvJz",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl get pods -n shop -l service=postgres -o wide\", \"suggested_prefixes\": [\"kubectl get\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01Fnb6B4BEeD28AwLb95jvJz\"}Error: Command \"kubectl get pods -n shop -l service=postgres -o wide\" returned non-zero exit status 1:\n\nkubectl get pods -n shop -l service=postgres -o wide\nE0818 07:44:01.044328     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.044690     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.048817     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.049253     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.053259     131 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?",
+                    "token_count": 576
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01DsSJ5HBbubVC5mhGjQLRqM",
+                    "role": "tool",
+                    "name": "bash",
+                    "content": "Params used for the tool call: {\"command\": \"kubectl describe deployment postgres -n shop\", \"suggested_prefixes\": [\"kubectl describe\"], \"timeout\": 30}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"bash\", \"tool_call_id\": \"toolu_bdrk_01DsSJ5HBbubVC5mhGjQLRqM\"}Error: Command \"kubectl describe deployment postgres -n shop\" returned non-zero exit status 1:\n\nkubectl describe deployment postgres -n shop\nE0818 07:44:01.043993     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.044461     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.048869     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.049249     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nE0818 07:44:01.053150     133 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://127.0.0.1:6444/api?timeout=32s\\\": dial tcp 127.0.0.1:6444: connect: connection refused\"\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?",
+                    "token_count": 551
+                },
+                {
+                    "content": "I'm encountering Kubernetes API connectivity issues. Let me try using the kubernetes query tools instead:",
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"kind\": \"deployments\", \"columns\": \"NAME:.metadata.name,NAMESPACE:.metadata.namespace,READY:.status.readyReplicas,AVAILABLE:.status.availableReplicas,REPLICAS:.status.replicas,UPDATED:.status.updatedReplicas\", \"filter_pattern\": \"postgres\"}",
+                                "name": "kubernetes_tabular_query"
+                            },
+                            "id": "toolu_bdrk_01QX6HPR34gySm2qxJkwBEaT",
+                            "type": "function"
+                        },
+                        {
+                            "index": 1,
+                            "function": {
+                                "arguments": "{\"kind\": \"pods\", \"columns\": \"NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\\\"Ready\\\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName\", \"filter_pattern\": \"shop\"}",
+                                "name": "kubernetes_tabular_query"
+                            },
+                            "id": "toolu_bdrk_014C8YwhEYsGwTEMimEDJisT",
+                            "type": "function"
+                        },
+                        {
+                            "index": 2,
+                            "function": {
+                                "arguments": "{\"kind\": \"deployments\", \"jq_expr\": \".items[] | select(.metadata.name == \\\"postgres\\\" and .metadata.namespace == \\\"shop\\\")\"}",
+                                "name": "kubernetes_jq_query"
+                            },
+                            "id": "toolu_bdrk_01Wsqe9bqYrkkV2MtPRq4cam",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "refusal": null,
+                        "reasoning": null
+                    },
+                    "token_count": 183
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_014C8YwhEYsGwTEMimEDJisT",
+                    "role": "tool",
+                    "name": "kubernetes_tabular_query",
+                    "content": "Params used for the tool call: {\"kind\": \"pods\", \"columns\": \"NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\\\"Ready\\\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName\", \"filter_pattern\": \"shop\"}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"kubernetes_tabular_query\", \"tool_call_id\": \"toolu_bdrk_014C8YwhEYsGwTEMimEDJisT\"}Command `#!/bin/bash\nerr_file=$(mktemp)\noutput=$(kubectl get pods --all-namespaces -o custom-columns=''NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName'' 2>\"$err_file\")\nkubectl_exit=$?\nerr_content=$(cat \"$err_file\" 2>/dev/null)\nrm -f \"$err_file\"\n\nif [ $kubectl_exit -ne 0 ] || [ -z \"$output\" ]; then\n  if command -v jq &>/dev/null; then\n    jq -n --arg stderr \"$err_content\" '{count: 0, header: null, rows: [], stderr: $stderr}'\n  else\n    echo \"=== STDERR ===\"\n    echo \"$err_content\"\n    echo \"=== ROWS ===\"\n    echo \"=== COUNT ===\"\n    echo 0\n  fi\n  exit 0\nfi\n\n# Split header and data rows\nheader=$(echo \"$output\" | head -1)\n\ndata=$(echo \"$output\" | tail -n +2 | grep -E 'shop' || true)\n\n\nif command -v jq &>/dev/null; then\n  if [ -n \"$data\" ]; then\n    rows=$(echo \"$data\" | jq -R . | jq -s '.')\n    count=$(echo \"$data\" | wc -l)\n  else\n    rows=\"[]\"\n    count=0\n  fi\n  jq -n \\\n    --argjson count \"$count\" \\\n    --arg header \"$header\" \\\n    --argjson rows \"$rows\" \\\n    --arg stderr \"$err_content\" \\\n    '{count: $count, header: $header, rows: $rows, stderr: (if $stderr == \"\" then null else $stderr end)}'\nelse\n  echo \"=== STDERR ===\"\n  echo \"$err_content\"\n  echo \"=== HEADER ===\"\n  echo \"$header\"\n  echo \"=== ROWS ===\"\n  echo \"$data\"\n  echo \"=== COUNT ===\"\n  if [ -n \"$data\" ]; then echo \"$data\" | wc -l; else echo 0; fi\nfi` failed with return code 2:\n\n/tmp/tmpmoba8ruk.sh: line 3: syntax error near unexpected token `(' while looking for matching `)'\n/tmp/tmpmoba8ruk.sh: line 3: `output=$(kubectl get pods --all-namespaces -o custom-columns=''NAME:.metadata.name,NAMESPACE:.metadata.namespace,STATUS:.status.phase,READY:.status.conditions[?(@.type==\"Ready\")].status,RESTARTS:.status.containerStatuses[0].restartCount,NODE:.spec.nodeName'' 2>\"$err_file\")'",
+                    "token_count": 752
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01QX6HPR34gySm2qxJkwBEaT",
+                    "role": "tool",
+                    "name": "kubernetes_tabular_query",
+                    "content": "Params used for the tool call: {\"kind\": \"deployments\", \"columns\": \"NAME:.metadata.name,NAMESPACE:.metadata.namespace,READY:.status.readyReplicas,AVAILABLE:.status.availableReplicas,REPLICAS:.status.replicas,UPDATED:.status.updatedReplicas\", \"filter_pattern\": \"postgres\"}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"kubernetes_tabular_query\", \"tool_call_id\": \"toolu_bdrk_01QX6HPR34gySm2qxJkwBEaT\"}{\n  \"count\": 0,\n  \"header\": null,\n  \"rows\": [],\n  \"stderr\": \"E0818 07:44:07.357540     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.358167     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.359495     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.359778     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nE0818 07:44:07.362993     172 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?\"\n}",
+                    "token_count": 600
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_01Wsqe9bqYrkkV2MtPRq4cam",
+                    "role": "tool",
+                    "name": "kubernetes_jq_query",
+                    "content": "Params used for the tool call: {\"kind\": \"deployments\", \"jq_expr\": \".items[] | select(.metadata.name == \\\"postgres\\\" and .metadata.namespace == \\\"shop\\\")\"}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"kubernetes_jq_query\", \"tool_call_id\": \"toolu_bdrk_01Wsqe9bqYrkkV2MtPRq4cam\"}{\n  \"total_items_processed\": 0,\n  \"matches_found\": 0,\n  \"results\": [],\n  \"stderr\": \"Unable to find resource kind 'deployments'. E0818 07:44:07.359158     179 memcache.go:265] \\\"Unhandled Error\\\" err=\\\"couldn't get current server API group list: Get \\\\\\\"https://127.0.0.1:6444/api?timeout=32s\\\\\\\": dial tcp 127.0.0.1:6444: connect: connection refused\\\"\\nThe connection to the server 127.0.0.1:6444 was refused - did you specify the right host or port?\"\n}",
+                    "token_count": 274
+                },
+                {
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "index": 0,
+                            "function": {
+                                "arguments": "{\"todos\": [{\"id\":\"1\",\"content\":\"Check postgres deployment status and configuration\",\"status\":\"failed\"},{\"id\":\"2\",\"content\":\"Examine postgres pods status and events\",\"status\":\"failed\"},{\"id\":\"3\",\"content\":\"Check postgres pod logs for errors\",\"status\":\"failed\"},{\"id\":\"4\",\"content\":\"Investigate resource constraints or node issues\",\"status\":\"failed\"},{\"id\":\"5\",\"content\":\"Analyze alert based on available context\",\"status\":\"completed\"}]}",
+                                "name": "TodoWrite"
+                            },
+                            "id": "toolu_bdrk_016i5rtE4ETSwP38kmzcyHkH",
+                            "type": "function"
+                        }
+                    ],
+                    "provider_specific_fields": {
+                        "refusal": null,
+                        "reasoning": null
+                    },
+                    "token_count": 100
+                },
+                {
+                    "tool_call_id": "toolu_bdrk_016i5rtE4ETSwP38kmzcyHkH",
+                    "role": "tool",
+                    "name": "TodoWrite",
+                    "content": "Params used for the tool call: {\"todos\": [{\"id\": \"1\", \"content\": \"Check postgres deployment status and configuration\", \"status\": \"failed\"}, {\"id\": \"2\", \"content\": \"Examine postgres pods status and events\", \"status\": \"failed\"}, {\"id\": \"3\", \"content\": \"Check postgres pod logs for errors\", \"status\": \"failed\"}, {\"id\": \"4\", \"content\": \"Investigate resource constraints or node issues\", \"status\": \"failed\"}, {\"id\": \"5\", \"content\": \"Analyze alert based on available context\", \"status\": \"completed\"}]}. The tool call output follows on the next line.\ntool_call_metadata={\"tool_name\": \"TodoWrite\", \"tool_call_id\": \"toolu_bdrk_016i5rtE4ETSwP38kmzcyHkH\"}✅ Investigation plan updated with 5 tasks. Tasks are now stored in session and will appear in subsequent prompts.\n\n# CURRENT INVESTIGATION TASKS\n\n**Task Status**: 1 completed, 0 in progress, 0 pending\n\n[✓] [5] Analyze alert based on available context\n[?] [1] Check postgres deployment status and configuration\n[?] [2] Examine postgres pods status and events\n[?] [3] Check postgres pod logs for errors\n[?] [4] Investigate resource constraints or node issues\n\n**Instructions**: Use TodoWrite tool to update task status as you work. Mark tasks as 'in_progress' when starting, 'completed' when finished.",
+                    "token_count": 356
+                },
+                {
+                    "content": "## Analysis\n\n**ShopDatabaseDown Alert - CRITICAL**\n\nThe alert fired because the postgres deployment in the `shop` namespace has **zero available replicas**.\n\n**Alert Details:**\n- **Metric**: `kube_deployment_status_replicas_available{deployment=\"postgres\",namespace=\"shop\"} == 0`\n- **Duration**: ~8.5 minutes (started 2026-08-18 07:39:09 UTC, ended 07:47:39 UTC)\n- **Severity**: Critical\n- **Status**: Active (alert was firing at investigation time 07:43:54 UTC)\n\n**Root Cause:**\nThe postgres database deployment has no running, ready replicas. This means the database is completely unavailable, likely causing failures in any shop application components that depend on it.\n\n**Possible Causes:**\n1. **Pod crash loop** - containers failing to start due to misconfiguration, missing dependencies, or application errors\n2. **Resource constraints** - insufficient CPU/memory on nodes preventing pod scheduling\n3. **Image pull failures** - unable to pull the postgres container image\n4. **Node issues** - nodes unavailable or pods evicted\n5. **Configuration errors** - invalid environment variables, missing secrets/configmaps, or volume mount issues\n\n**Investigation Blocked:**\nUnable to complete deeper investigation due to Kubernetes API connectivity issues (`connection refused` to 127.0.0.1:6444). The cluster API server appears unreachable from the investigation environment.\n\n**Recommended Actions:**\n1. Check postgres deployment: `kubectl get deployment postgres -n shop`\n2. Inspect pod status: `kubectl get pods -n shop -l deployment=postgres`\n3. Review pod events: `kubectl describe deployment postgres -n shop`\n4. Check logs: `kubectl logs -n shop -l deployment=postgres --tail=100`\n5. Verify node capacity and pod resource requests",
+                    "role": "assistant",
+                    "provider_specific_fields": {
+                        "refusal": null,
+                        "reasoning": null
+                    },
+                    "token_count": 393
+                }
+            ],
+            "metadata": {
+                "usage": {
+                    "prompt_tokens": 14543,
+                    "completion_tokens": 428,
+                    "total_tokens": 14971,
+                    "cached_tokens": 13998
+                },
+                "tokens": {
+                    "total_tokens": 11414,
+                    "tools_tokens": 3986,
+                    "system_tokens": 4279,
+                    "user_tokens": 494,
+                    "tools_to_call_tokens": 1820,
+                    "assistant_tokens": 874,
+                    "other_tokens": 0
+                },
+                "max_tokens": 1000000,
+                "max_output_tokens": 120000,
+                "costs": {
+                    "total_cost": 0.08629110000000001,
+                    "total_tokens": 50868,
+                    "prompt_tokens": 49452,
+                    "completion_tokens": 1416,
+                    "cached_tokens": 34892,
+                    "reasoning_tokens": 0,
+                    "max_completion_tokens_per_call": 433,
+                    "max_prompt_tokens_per_call": 14543,
+                    "num_compactions": 0
+                },
+                "finish_reason": "stop"
+            },
+            "finish_reason": "stop"
+        }
+    }
+]

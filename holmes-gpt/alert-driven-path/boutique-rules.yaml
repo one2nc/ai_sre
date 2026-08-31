@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: boutique-alerts
+  namespace: boutique
+  labels: {app: boutique-alerts}
+spec:
+  groups:
+  - name: boutique.alerts
+    rules:
+    - alert: BoutiqueServiceDown
+      expr: kube_deployment_status_replicas_available{namespace="boutique"} == 0
+      for: 1m
+      labels: {severity: critical}
+      annotations:
+        summary: "boutique service {{ $labels.deployment }} has no available replicas"

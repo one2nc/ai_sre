@@ -6,7 +6,7 @@ Exploring AI tooling for SRE and platform teams. Each experiment runs a tool aga
 
 ![Architecture](assets/architecture.png)
 
-Each experiment is an independent silo. HolmesGPT and K8sGPT were run against [iximiuz Labs](https://labs.iximiuz.com) challenge playgrounds; OpenSRE was run against the local observability sandbox in [`opensre/observability-stack/`](opensre/observability-stack/README.md), which is where alert-driven RCA needs Prometheus, Loki, and Tempo present.
+Each experiment is an independent silo. K8sGPT and the first HolmesGPT round were run against [iximiuz Labs](https://labs.iximiuz.com) challenge playgrounds; HolmesGPT was later re-run through the Alertmanager path on a kind cluster with kube-prometheus-stack ([`holmes-gpt/alert-driven-path/`](holmes-gpt/alert-driven-path/README.md)); OpenSRE was run against the local observability sandbox in [`opensre/observability-stack/`](opensre/observability-stack/README.md), which is where alert-driven RCA needs Prometheus, Loki, and Tempo present.
 
 
 ## Experiments
@@ -14,7 +14,7 @@ Each experiment is an independent silo. HolmesGPT and K8sGPT were run against [i
 
 | SNo | Experiment | Version | Date | Test environment | README |
 |-------|------------|---------|------|------------------|--------|
-| 1 | `holmes-gpt/` | 0.30.0 | 2026-05-18 | iximiuz Labs (K8s + Linux challenges) | [README](holmes-gpt/README.md) |
+| 1 | `holmes-gpt/` | 0.30.0, `latest` | 2026-05-18, 2026-08-18 | iximiuz Labs (K8s + Linux challenges); kind + kube-prometheus-stack | [README](holmes-gpt/README.md) |
 | 2 | `k8sgpt/` | 0.4.33 | 2026-05-18 | iximiuz Labs (K8s challenge) | [README](k8sgpt/README.md) |
 | 3 | `opensre/` | 0.1 | 2026-05-24 | Local `observability-stack` sandbox | [README](opensre/README.md) |
 
@@ -23,8 +23,9 @@ Each experiment is an independent silo. HolmesGPT and K8sGPT were run against [i
 
 | Environment | Used by | What it provides |
 |-------------|---------|------------------|
-| [iximiuz Labs](https://labs.iximiuz.com/playgrounds) challenge playgrounds | HolmesGPT, K8sGPT | Pre-broken K8s and Linux scenarios with a known correct answer, so tool output can be scored against ground truth |
+| [iximiuz Labs](https://labs.iximiuz.com/playgrounds) challenge playgrounds | HolmesGPT (interactive), K8sGPT | Pre-broken K8s and Linux scenarios with a known correct answer, so tool output can be scored against ground truth |
 | [`opensre/observability-stack/`](opensre/observability-stack/README.md) | OpenSRE | Local Docker Desktop K8s sandbox: instrumented Go services, Grafana stack, real alerts, chaos targets |
+| kind + kube-prometheus-stack | HolmesGPT (alert path) | Single-node cluster with Prometheus and Alertmanager; fault injection into a 3-service app and the 12-service Online Boutique, so real alerts drive `holmes investigate alertmanager` |
 
 What the local sandbox exposes:
 
