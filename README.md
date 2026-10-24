@@ -22,9 +22,9 @@ Each experiment is an independent silo. HolmesGPT and K8sGPT were run against [i
 
 HolmesGPT (`holmes:latest` image) run against an [SREGym](https://github.com/SREGym/SREGym) fault on a local kind cluster, diagnosis stage only, agent and judge model `openai/gpt-oss-120b`.
 
-| Problem | Date | Result | Recording | Log | Judge result |
-|---------|------|--------|-----------|-----|--------------|
-| `cronjob_sidecar_blocks_completion_hotel_reservation` | 2026-10-23 | **Fail** (score 0/100). HolmesGPT blamed CoreDNS; actual fault was a CronJob sidecar keeping Jobs from completing. 24 tool calls, ~754K tokens, 4.1 min | [GIF](holmes-gpt/sregym/cronjob_sidecar_blocks_completion_hotel_reservation/run.gif) | [run.log](holmes-gpt/sregym/cronjob_sidecar_blocks_completion_hotel_reservation/run.log) | [judge.csv](holmes-gpt/sregym/cronjob_sidecar_blocks_completion_hotel_reservation/judge.csv) |
+| Problem | Date | HolmesGPT diagnosis | Ground truth | Result | Recording | Log | Judge result |
+|---------|------|---------------------|--------------|--------|-----------|-----|--------------|
+| `cronjob_sidecar_blocks_completion_hotel_reservation` | 2026-10-23 | Cluster-wide DNS failure caused by CoreDNS. Based on `reservation` and `profile` pods panicking with `no reachable servers` when connecting to MongoDB at startup. Never looked at CronJobs or Jobs. | CronJob `audit-log-archiver` in `hotel-reservation` (runs every minute) has a `fluent-bit-sidecar` defined as a regular container that never exits, so pods never complete and Jobs pile up at `COMPLETIONS 0/1`. Fix: use the native sidecar pattern (`initContainers` with `restartPolicy: Always`). | **Fail** (score 0/100). 24 tool calls, ~754K tokens, 4.1 min | [GIF](holmes-gpt/sregym/cronjob_sidecar_blocks_completion_hotel_reservation/run.gif) | [run.log](holmes-gpt/sregym/cronjob_sidecar_blocks_completion_hotel_reservation/run.log) | [judge.csv](holmes-gpt/sregym/cronjob_sidecar_blocks_completion_hotel_reservation/judge.csv) |
 
 
 ## Test environments
